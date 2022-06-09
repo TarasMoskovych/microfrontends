@@ -1,4 +1,5 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
 
 module.exports = {
@@ -10,12 +11,31 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './public/index.html',
     }),
+    new MiniCssExtractPlugin(),
     new ModuleFederationPlugin({
       name: 'products',
       filename: 'remoteEntry.js',
       exposes: {
-        './ProductsIndex': './src/index',
+        './ProductsIndex': './src/app',
       },
+      shared: [
+        {
+          '@faker-js/faker': {
+            singleton: true,
+          },
+        },
+      ],
     }),
   ],
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: [
+          MiniCssExtractPlugin.loader, // instead of style-loader
+          'css-loader',
+        ],
+      },
+    ],
+  },
 };

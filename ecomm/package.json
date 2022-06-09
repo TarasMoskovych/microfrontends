@@ -1,0 +1,18 @@
+{
+  "name": "ecomm",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm-run-all --parallel serve:container serve:cart serve:products",
+    "serve:container": "npm run start --prefix ./container",
+    "serve:cart": "npm run start --prefix ./cart",
+    "serve:products": "npm run start --prefix ./products"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "npm-run-all": "^4.1.5"
+  }
+}
