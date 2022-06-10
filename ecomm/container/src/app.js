@@ -1,8 +1,8 @@
 import './styles.css';
-import { mount as mountProducts } from 'products/ProductsIndex';
-import { mount as mountCart } from 'cart/CartIndex';
+import { Cart } from 'cart/CartIndex';
+import { Products } from 'products/ProductsIndex';
 
-mountProducts(document.querySelector('.products'));
-mountCart(document.querySelector('.cart'));
+new Cart(document.querySelector('.cart'));
+new Products(document.querySelector('.products'));
 
 console.log('Container!');
