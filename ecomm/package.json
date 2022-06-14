@@ -4,14 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npm-run-all --parallel serve:container serve:cart serve:products",
+    "start": "npm-run-all --parallel serve:container serve:cart serve:products serve:login",
     "serve:container": "npm run start --prefix ./container",
     "serve:cart": "npm run start --prefix ./cart",
     "serve:products": "npm run start --prefix ./products",
+    "serve:login": "npm run start --prefix ./login",
     "install:container": "cd ./container && npm i",
     "install:cart": "cd ./cart && npm i",
     "install:products": "cd ./products && npm i",
-    "postinstall": "npm-run-all --parallel install:container install:cart install:products"
+    "install:login": "cd ./login && npm i",
+    "postinstall": "npm-run-all --parallel install:container install:cart install:products install:login"
   },
   "keywords": [],
   "author": "",

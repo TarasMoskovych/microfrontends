@@ -7,12 +7,26 @@ export class Products {
       throw new Error('Container must be defined!');
     }
 
-    this.render(container);
-    this.addListeners();
+    this.container = container;
+    this.init();
   }
 
-  render(container) {
-    container.innerHTML = `
+  init() {
+    this.container.innerHTML = this.render();
+    this.initSelectors();
+    this.initListeners();
+  }
+
+  initSelectors() {
+    this.productsEl = this.container.querySelector('.app-products');
+  }
+
+  initListeners() {
+    this.productsEl.addEventListener('click', this.onProductClick.bind(this));
+  }
+
+  render() {
+    return `
       <div class="app-products">
         <div class="app-products__wrapper">
           ${this.getProducts()}
@@ -21,21 +35,19 @@ export class Products {
     `;
   }
 
-  addListeners() {
-    document.querySelector('.app-products').addEventListener('click', (e) => {
-      const id = e.target.getAttribute('data-id');
+  onProductClick(e) {
+    const id = e.target.getAttribute('data-id');
 
-      if (id) {
-        const detail = {
-          id,
-          price: Number.parseFloat(e.target.getAttribute('data-price').substring(1)),
-        };
+    if (id) {
+      const detail = {
+        id,
+        price: Number.parseFloat(e.target.getAttribute('data-price').substring(1)),
+      };
 
-        document.dispatchEvent(
-          new CustomEvent('products:add-to-cart', { detail })
-        );
-      }
-    });
+      document.dispatchEvent(
+        new CustomEvent('products:add-to-cart', { detail })
+      );
+    }
   }
 
   getProducts() {
