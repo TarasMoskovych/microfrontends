@@ -1,0 +1,49 @@
+.app-products__wrapper {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.app-product {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 250px;
+  min-height: 500px;
+  margin: 10px;
+  padding: 15px 15px 0 15px;
+  position: relative;
+  text-align: center;
+}
+
+.app-product__price {
+  color: grey;
+  font-size: 22px;
+}
+
+.app-product__action-wrapper {
+  bottom: 15px;
+  margin: 0;
+  left: 10px;
+  position: absolute;
+  width: calc(100% - 20px);
+}
+
+.app-product__action {
+  background-color: #000;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 18px;
+  outline: 0;
+  padding: 12px;
+  text-align: center;
+  width: 100%;
+}
+
+.app-product__action:hover {
+  opacity: 0.7;
+}
+
+.app-product__action:active {
+  opacity: 0.8;
+}
+

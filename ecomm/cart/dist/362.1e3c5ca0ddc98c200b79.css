@@ -1,0 +1,45 @@
+.app-cart {
+  display: inline-block;
+  position: relative;
+}
+
+.app-cart:not(.app-cart--empty):hover .app-cart__info {
+  display: block;
+}
+
+.app-cart__wrapper {
+  background-color: seagreen;
+  border-radius: 5px;
+  cursor: pointer;
+  color: white;
+  padding: 5px 10px;
+}
+
+.app-cart__text {
+  margin: 0;
+}
+
+.app-cart__info {
+  background-color: seagreen;
+  border-top: 1px solid white;
+  border-radius: 5px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  display: none;
+  color: white;
+  padding: 5px 10px;
+  right: 0;
+  position: absolute;
+  text-align: center;
+  top: 25px;
+  width: 120px;
+}
+
+.app-cart__info p {
+  margin: 0;
+}
+
+.app-cart--empty .app-cart__wrapper {
+  background-color: gray;
+}
+

@@ -1,0 +1,14 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Cart</title><style>#app-cart {
+      border: 1px dashed green;
+      margin-top: 10px;
+      padding: 15px;
+      text-align: right;
+    }</style><script defer="defer" src="https://tarasmoskovych.github.io/microfrontends/ecomm/cart/dist/main.0eb24b15c910a540003a.js"></script><script defer="defer" src="https://tarasmoskovych.github.io/microfrontends/ecomm/cart/dist/remoteEntry.js"></script></head><body><div><button class="js-add-item">Add Item</button> <button class="js-remove-all">Empty Cart</button></div><div id="app-cart"></div><script>document.addEventListener('DOMContentLoaded', () => {
+      document.querySelector('.js-add-item').addEventListener('click', () => {
+        document.dispatchEvent(new CustomEvent('products:add-to-cart', { detail: { price: 25 } }));
+      });
+
+      document.querySelector('.js-remove-all').addEventListener('click', () => {
+        document.dispatchEvent(new CustomEvent('cart:remove-all'));
+      });
+    });</script></body></html>

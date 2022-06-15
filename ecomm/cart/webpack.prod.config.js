@@ -1,17 +1,24 @@
+const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
-  mode: 'development',
-  devServer: {
-    port: 8082,
+  mode: 'production',
+  output: {
+    filename: '[name].[contenthash].js',
+    path: path.resolve(__dirname, './dist'),
+    publicPath: 'https://tarasmoskovych.github.io/microfrontends/ecomm/cart/dist/',
   },
   plugins: [
+    new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: './public/index.html',
     }),
-    new MiniCssExtractPlugin(),
+    new MiniCssExtractPlugin({
+      filename: '[name].[contenthash].css'
+    }),
     new ModuleFederationPlugin({
       name: 'cart',
       filename: 'remoteEntry.js',

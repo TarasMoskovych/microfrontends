@@ -16,7 +16,7 @@ module.exports = {
       name: 'login',
       filename: 'remoteEntry.js',
       exposes: {
-        './LoginIndex': './src/app',
+        './LoginIndex': './src/login',
       },
       shared: [
         {

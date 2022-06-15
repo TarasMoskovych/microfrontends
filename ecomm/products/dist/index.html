@@ -1,0 +1,9 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Products</title><style>#app-products {
+      border: 1px dashed green;
+      margin-top: 10px;
+      padding: 15px;
+    }</style><script defer="defer" src="https://tarasmoskovych.github.io/microfrontends/ecomm/products/dist/main.9dd43ef29dc5e747292b.js"></script><script defer="defer" src="https://tarasmoskovych.github.io/microfrontends/ecomm/products/dist/remoteEntry.js"></script></head><body><div id="app-products"></div><script>document.addEventListener('DOMContentLoaded', () => {
+      document.addEventListener('products:add-to-cart', (e) => {
+        console.log(e.detail);
+      });
+    });</script></body></html>

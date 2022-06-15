@@ -1,0 +1,58 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.ecomm header {
+  background-color: lightgray;
+  margin: 0 auto;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+.ecomm .header-wrapper {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 15px;
+}
+
+.ecomm .header-right-panel {
+  align-items: flex-end;
+  display: flex;
+  flex-direction: column;
+}
+
+.ecomm .header-right-panel > div {
+  margin: 5px 0;
+}
+
+.ecomm header h1 {
+  margin: 0;
+}
+
+.ecomm .login {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+}
+
+.ecomm main {
+  margin-top: 100px;
+}
+
+.ecomm footer {
+  background-color: lightgray;
+  padding: 5px 0;
+  text-align: center;
+}
+
+.ecomm footer p {
+  padding: 2px 0;
+  margin: 0;
+}
+
