@@ -20,12 +20,29 @@ body {
   padding: 10px 15px;
 }
 
+.ecomm .header-right-panel {
+  align-items: flex-end;
+  display: flex;
+  flex-direction: column;
+}
+
+.ecomm .header-right-panel > div {
+  margin: 5px 0;
+}
+
 .ecomm header h1 {
   margin: 0;
 }
 
+.ecomm .login {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+}
+
 .ecomm main {
-  margin-top: 70px;
+  margin-top: 100px;
 }
 
 .ecomm footer {
