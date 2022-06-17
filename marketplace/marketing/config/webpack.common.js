@@ -1,3 +1,7 @@
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
+const packageJson = require('./../package.json');
+
 module.exports = {
   module: {
     rules: [
@@ -14,4 +18,17 @@ module.exports = {
       },
     ],
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './public/index.html',
+    }),
+    new ModuleFederationPlugin({
+      name: 'marketing',
+      filename: 'remoteEntry.js',
+      exposes: {
+        './mount': './src/mount'
+      },
+      shared: packageJson.dependencies,
+    }),
+  ],
 };
