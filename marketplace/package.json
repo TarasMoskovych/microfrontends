@@ -1,0 +1,20 @@
+{
+  "name": "marketplace",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm-run-all --parallel serve:container serve:marketing",
+    "serve:container": "npm run start --prefix ./container",
+    "serve:marketing": "npm run start --prefix ./marketing",
+    "install:container": "cd ./container && npm i",
+    "install:marketing": "cd ./marketing && npm i",
+    "postinstall": "npm-run-all --parallel install:container install:marketing"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "npm-run-all": "^4.1.5"
+  }
+}
