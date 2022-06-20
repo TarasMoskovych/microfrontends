@@ -34,6 +34,13 @@ const useStyles = makeStyles((theme) => ({
       listStyle: 'none',
     },
   },
+  root: {
+    cursor: 'pointer',
+    transition: '0.3s',
+    '&:hover': {
+      backgroundColor: '#EEEEEE',
+    },
+  },
   toolbar: {
     flexWrap: 'wrap',
   },
@@ -178,7 +185,7 @@ export default function Pricing() {
               sm={tier.title === 'Enterprise' ? 12 : 6}
               md={4}
             >
-              <Card>
+              <Card className={classes.root}>
                 <CardHeader
                   title={tier.title}
                   subheader={tier.subheader}

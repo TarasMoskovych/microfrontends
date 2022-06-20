@@ -49,10 +49,10 @@ const useStyles = makeStyles((theme) => ({
     height: '100%',
     display: 'flex',
     flexDirection: 'column',
-    transition: "transform 0.15s ease-in-out"
+    transition: 'transform 0.15s ease-in-out',
   },
   cardHovered: {
-    transform: "scale3d(1.05, 1.05, 1)",
+    transform: 'scale3d(1.05, 1.05, 1)',
   },
   cardMedia: {
     paddingTop: '56.25%', // 16:9
