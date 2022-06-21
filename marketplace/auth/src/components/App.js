@@ -10,7 +10,7 @@ const generateClassName = createGenerateClassName({
   productionPrefix: 'mfe-1',
 });
 
-export default ({ history }) => {
+export default ({ history, standalone }) => {
   return (
     <div>
       <StylesProvider generateClassName={generateClassName}>
@@ -18,9 +18,11 @@ export default ({ history }) => {
           <Switch>
             <Route path="/auth/signin" component={Signin}></Route>
             <Route path="/auth/signup" component={Signup}></Route>
-            <Route exact path="*">
-              <Redirect to="/auth/signin" />
-            </Route>
+            {standalone &&
+              <Route exact path="*">
+                <Redirect to="/auth/signin" />
+              </Route>
+            }
           </Switch>
         </Router>
       </StylesProvider>
