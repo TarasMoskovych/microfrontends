@@ -1,6 +1,6 @@
 const { merge } = require('webpack-merge');
 const commonConfig = require('./webpack.common');
-const port = 8083;
+const port = 8081;
 
 const devConfig = {
   mode: 'development',
@@ -9,7 +9,7 @@ const devConfig = {
   },
   devServer: {
     port,
-    historyApiFallback: true,
+    historyApiFallback: true
   },
 };
 

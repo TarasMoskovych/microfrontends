@@ -4,12 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npm-run-all --parallel serve:container serve:marketing",
+    "start": "npm-run-all --parallel serve:container serve:auth serve:marketing",
     "serve:container": "npm run start --prefix ./container",
+    "serve:auth": "npm run start --prefix ./auth",
     "serve:marketing": "npm run start --prefix ./marketing",
     "install:container": "cd ./container && npm i",
+    "install:auth": "cd ./auth && npm i",
     "install:marketing": "cd ./marketing && npm i",
-    "postinstall": "npm-run-all --parallel install:container install:marketing"
+    "postinstall": "npm-run-all --parallel install:container install:auth install:marketing"
   },
   "keywords": [],
   "author": "",
