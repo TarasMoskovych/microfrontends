@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
@@ -12,6 +11,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { Link } from 'react-router-dom';
 import Copyright from './Copyright';
+import { useForm } from '../hooks/use-form';
+import { VALIDATION_CONFIGS } from '../configs/validation.configs';
+import LoadingButton from './LoadingButton';
 
 const useStyles = makeStyles((theme) => ({
   '@global': {
@@ -33,13 +35,29 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     marginTop: theme.spacing(1),
   },
-  submit: {
-    margin: theme.spacing(3, 0, 2),
-  },
 }));
 
 export default function SignIn({ onSignIn }) {
   const classes = useStyles();
+  const [loading, setLoading] = useState(false);
+  const { email, password } = VALIDATION_CONFIGS;
+  const { resetForm, handleSubmit, handleBlur, handleChange, data, errors } = useForm({
+    validations: { email, password },
+    initialValues: {
+      email: '',
+      password: '',
+      remember: false,
+    },
+    onSubmit: data => {
+      setLoading(true);
+      onSignIn(data, {
+        onDone: () => {
+          setLoading(false);
+          resetForm();
+        },
+      });
+    },
+  });
 
   return (
     <Container component="main" maxWidth="xs">
@@ -64,7 +82,11 @@ export default function SignIn({ onSignIn }) {
             label="Email Address"
             name="email"
             autoComplete="email"
-            autoFocus
+            onChange={handleChange('email')}
+            onBlur={handleBlur('email')}
+            value={data.email}
+            error={!!errors.email}
+            helperText={errors.email || ''}
           />
           <TextField
             variant="outlined"
@@ -76,21 +98,27 @@ export default function SignIn({ onSignIn }) {
             type="password"
             id="password"
             autoComplete="current-password"
+            onChange={handleChange('password')}
+            onBlur={handleBlur('password')}
+            value={data.password}
+            error={!!errors.password}
+            helperText={errors.password || ''}
           />
           <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
             label="Remember me"
+            control={
+              <Checkbox
+                checked={data.remember}
+                onChange={handleChange('remember')}
+                color="primary"
+              />
+            }
           />
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-            onClick={onSignIn}
-          >
-            Sign In
-          </Button>
+          <LoadingButton
+            loading={loading}
+            text="Sign In"
+            handleClick={handleSubmit}
+          />
           <Grid container>
             <Grid item>
               <Link to="/auth/signup">{"Don't have an account? Sign Up"}</Link>

@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
@@ -12,6 +11,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { Link } from 'react-router-dom';
 import Copyright from './Copyright';
+import { VALIDATION_CONFIGS } from '../configs/validation.configs';
+import { useForm } from '../hooks/use-form';
+import LoadingButton from './LoadingButton';
 
 const useStyles = makeStyles((theme) => ({
   '@global': {
@@ -33,13 +35,31 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     marginTop: theme.spacing(3),
   },
-  submit: {
-    margin: theme.spacing(3, 0, 2),
-  },
 }));
 
 export default function SignUp({ onSignIn }) {
   const classes = useStyles();
+  const [loading, setLoading] = useState(false);
+  const { email, password, firstName, lastName } = VALIDATION_CONFIGS;
+  const { resetForm, handleSubmit, handleBlur, handleChange, data, errors } = useForm({
+    validations: { email, password, firstName, lastName },
+    initialValues: {
+      firstName: '',
+      lastName: '',
+      email: '',
+      password: '',
+      allowExtraEmails: true,
+    },
+    onSubmit: data => {
+      setLoading(true);
+      onSignIn(data, {
+        onDone: () => {
+          setLoading(false);
+          resetForm();
+        },
+      });
+    },
+  });
 
   return (
     <Container component="main" maxWidth="xs">
@@ -65,7 +85,11 @@ export default function SignUp({ onSignIn }) {
                 fullWidth
                 id="firstName"
                 label="First Name"
-                autoFocus
+                onChange={handleChange('firstName')}
+                onBlur={handleBlur('firstName')}
+                value={data.firstName}
+                error={!!errors.firstName}
+                helperText={errors.firstName || ''}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -77,6 +101,11 @@ export default function SignUp({ onSignIn }) {
                 label="Last Name"
                 name="lastName"
                 autoComplete="lname"
+                onChange={handleChange('lastName')}
+                onBlur={handleBlur('lastName')}
+                value={data.lastName}
+                error={!!errors.lastName}
+                helperText={errors.lastName || ''}
               />
             </Grid>
             <Grid item xs={12}>
@@ -88,6 +117,11 @@ export default function SignUp({ onSignIn }) {
                 label="Email Address"
                 name="email"
                 autoComplete="email"
+                onChange={handleChange('email')}
+                onBlur={handleBlur('email')}
+                value={data.email}
+                error={!!errors.email}
+                helperText={errors.email || ''}
               />
             </Grid>
             <Grid item xs={12}>
@@ -100,25 +134,31 @@ export default function SignUp({ onSignIn }) {
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                onChange={handleChange('password')}
+                onBlur={handleBlur('password')}
+                value={data.password}
+                error={!!errors.password}
+                helperText={errors.password || ''}
               />
             </Grid>
             <Grid item xs={12}>
               <FormControlLabel
-                control={<Checkbox value="allowExtraEmails" color="primary" />}
+                control={
+                  <Checkbox
+                    value="allowExtraEmails"
+                    checked={data.allowExtraEmails}
+                    onChange={handleChange('allowExtraEmails')}
+                    color="primary"
+                  />}
                 label="I want to receive inspiration, marketing promotions and updates via email."
               />
             </Grid>
           </Grid>
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-            onClick={onSignIn}
-          >
-            Sign Up
-          </Button>
+          <LoadingButton
+            loading={loading}
+            text="Sign Up"
+            handleClick={handleSubmit}
+          />
           <Grid container justifyContent="flex-end">
             <Grid item>
               <Link to="/auth/signin">Already have an account? Sign in</Link>
