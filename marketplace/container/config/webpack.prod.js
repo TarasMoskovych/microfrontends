@@ -9,12 +9,14 @@ const prodConfig = {
   output: {
     filename: '[name].[contenthash].js',
     publicPath: '/container/latest/',
+    clean: true,
   },
   plugins: [
     new ModuleFederationPlugin({
       name: 'container',
       remotes: {
         auth: `auth@${domain}/auth/latest/remoteEntry.js`,
+        dashboard: `dashboard@${domain}/dashboard/latest/remoteEntry.js`,
         marketing: `marketing@${domain}/marketing/latest/remoteEntry.js`,
       },
       shared: packageJson.dependencies,

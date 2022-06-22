@@ -1,3 +1,4 @@
+const CopyPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
@@ -17,6 +18,11 @@ module.exports = {
     ],
   },
   plugins: [
+    new CopyPlugin({
+      patterns: [
+        { from: './public/assets', to: 'assets' },
+      ],
+    }),
     new HtmlWebpackPlugin({
       template: './public/index.html',
       favicon: './public/assets/favicon.ico',

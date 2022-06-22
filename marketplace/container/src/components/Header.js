@@ -1,5 +1,6 @@
 import React from 'react';
 import AppBar from '@material-ui/core/AppBar';
+import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -18,7 +19,17 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   appBar: {
-    borderBottom: `1px solid ${theme.palette.divider}`,
+    backgroundColor: 'white',
+    borderBottom: `2px solid ${theme.palette.divider}`,
+  },
+  boxWrapper: {
+    alignItems: 'center',
+    display: 'flex',
+  },
+  box: {
+    marginRight: theme.spacing(1),
+    position: 'relative',
+    top: theme.spacing(1),
   },
   toolbar: {
     flexWrap: 'wrap',
@@ -66,21 +77,35 @@ export default function Header({ signedIn, onSignOut }) {
   return (
     <React.Fragment>
       <AppBar
-        position="static"
+        position="fixed"
         color="default"
         elevation={0}
         className={classes.appBar}
       >
         <Toolbar className={classes.toolbar}>
-          <Typography
-            variant="h6"
-            color="inherit"
-            noWrap
-            component={RouterLink}
-            to="/"
-          >
-            App
-          </Typography>
+          <div className={classes.boxWrapper}>
+            <RouterLink to="/">
+              <Box
+                className={classes.box}
+                component="img"
+                sx={{
+                  height: 50,
+                  width: 50,
+                }}
+                alt="Logo."
+                src="/assets/logo.svg"
+              />
+            </RouterLink>
+            <Typography
+              variant="h6"
+              color="inherit"
+              noWrap
+              component={RouterLink}
+              to="/"
+            >
+              MarketPlace
+            </Typography>
+          </div>
           <Button
             color="primary"
             variant="outlined"

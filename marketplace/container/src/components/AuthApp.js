@@ -22,5 +22,5 @@ export default ({ onSignIn }) => {
     history.listen(onParentNavigate);
   }, []);
 
-  return <div ref={ref} />;
+  return <div style={{ display: 'flex', justifyContent: 'center' }} ref={ref} />;
 };
