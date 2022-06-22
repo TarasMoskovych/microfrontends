@@ -20,6 +20,7 @@ jobs:
       - run: npm run build
         env:
           PRODUCTION_DOMAIN: ${{ secrets.PRODUCTION_DOMAIN }}
+          CONTAINER_ASSETS_URL: ${{ secrets.CONTAINER_ASSETS_URL }}
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:

@@ -93,7 +93,7 @@ export default function Header({ signedIn, onSignOut }) {
                   width: 50,
                 }}
                 alt="Logo."
-                src="/assets/logo.svg"
+                src={`${ASSETS_URL}/logo.svg`}
               />
             </RouterLink>
             <Typography
