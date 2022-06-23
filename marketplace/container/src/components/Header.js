@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
-import AccountCircle from '@material-ui/icons/AccountCircle';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import AppBar from '@material-ui/core/AppBar';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
-import Dashboard from '@material-ui/icons/Dashboard';
-import ExitToApp from '@material-ui/icons/ExitToApp';
+import DashboardIcon from '@material-ui/icons/Dashboard';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import IconButton from '@material-ui/core/IconButton';
+import ListAltIcon from '@material-ui/icons/ListAlt';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import Person from '@material-ui/icons/Person';
+import PersonIcon from '@material-ui/icons/Person';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { Link as RouterLink } from 'react-router-dom';
@@ -145,7 +146,7 @@ export default function Header({ signedIn, onSignOut }) {
               to={'/auth/signin'}
               onClick={onClick}
             >
-              <Person />
+              <PersonIcon />
               Login
             </Button>
           }
@@ -157,7 +158,7 @@ export default function Header({ signedIn, onSignOut }) {
               aria-haspopup="true"
               onClick={handleMenu}
             >
-              <AccountCircle color="primary" />
+              <AccountCircleIcon color="primary" />
             </IconButton>
           }
           <Menu
@@ -178,13 +179,19 @@ export default function Header({ signedIn, onSignOut }) {
           >
             <MenuItem onClick={handleClose}>
               <RouterLink to="/dashboard" color="inherit">
-                <Dashboard />
+                <DashboardIcon />
                 Dashboard
+              </RouterLink>
+            </MenuItem>
+            <MenuItem onClick={handleClose}>
+              <RouterLink to="/product-management" color="inherit">
+                <ListAltIcon />
+                Product Management
               </RouterLink>
             </MenuItem>
             <MenuItem onClick={onClick}>
               <RouterLink to="/auth/signin" color="inherit">
-                <ExitToApp />
+                <ExitToAppIcon />
                 Logout
               </RouterLink>
             </MenuItem>
