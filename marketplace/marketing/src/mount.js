@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { createMemoryHistory } from 'history';
 import App from './components/App';
 
-export const mount = (el, { onNavigate, defaultHistory, initialPath }) => {
+export const mount = (el, { onNavigate, defaultHistory, initialPath, isSignedIn }) => {
   const history = defaultHistory || createMemoryHistory({
     initialEntries: [initialPath],
   });
@@ -12,7 +12,7 @@ export const mount = (el, { onNavigate, defaultHistory, initialPath }) => {
     history.listen(onNavigate);
   }
 
-  ReactDOM.render(<App history={history} />, el);
+  ReactDOM.render(<App history={history} isSignedIn={isSignedIn} />, el);
 
   return {
     onParentNavigate({ pathname: nextPath }) {

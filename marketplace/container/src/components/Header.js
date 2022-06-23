@@ -1,11 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
+import AccountCircle from '@material-ui/icons/AccountCircle';
 import AppBar from '@material-ui/core/AppBar';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
+import Dashboard from '@material-ui/icons/Dashboard';
+import ExitToApp from '@material-ui/icons/ExitToApp';
+import IconButton from '@material-ui/core/IconButton';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import Person from '@material-ui/icons/Person';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
 import { Link as RouterLink } from 'react-router-dom';
+import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   '@global': {
@@ -30,6 +37,23 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(1),
     position: 'relative',
     top: theme.spacing(1),
+  },
+  menu: {
+    display: 'flex',
+    flexDirection: 'column',
+    '& svg': {
+      marginRight: theme.spacing(1),
+    },
+    '& li': {
+      justifyContent: 'flex-start',
+      padding: `${theme.spacing(1)}px ${theme.spacing(2)}px`,
+      color: 'rgba(0, 0, 0, 0.87)',
+    },
+    '& a': {
+      alignItems: 'center',
+      display: 'flex',
+      color: 'rgba(0, 0, 0, 0.87)',
+    },
   },
   toolbar: {
     flexWrap: 'wrap',
@@ -67,8 +91,14 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Header({ signedIn, onSignOut }) {
   const classes = useStyles();
+  const [anchorEl, setAnchorEl] = useState(null);
+
+  const handleMenu = (event) => setAnchorEl(event.currentTarget);
+  const handleClose = () => setAnchorEl(null);
 
   const onClick = () => {
+    handleClose();
+
     if (signedIn && onSignOut) {
       onSignOut();
     }
@@ -106,16 +136,59 @@ export default function Header({ signedIn, onSignOut }) {
               MarketPlace
             </Typography>
           </div>
-          <Button
-            color="primary"
-            variant="outlined"
-            className={classes.link}
-            component={RouterLink}
-            to={'/auth/signin'}
-            onClick={onClick}
+          {!signedIn &&
+            <Button
+              color="primary"
+              variant="outlined"
+              className={classes.link}
+              component={RouterLink}
+              to={'/auth/signin'}
+              onClick={onClick}
+            >
+              <Person />
+              Login
+            </Button>
+          }
+          {
+            signedIn &&
+            <IconButton
+              aria-label="account of current user"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              onClick={handleMenu}
+            >
+              <AccountCircle color="primary" />
+            </IconButton>
+          }
+          <Menu
+            classes={{ list: classes.menu }}
+            id="menu-appbar"
+            anchorEl={anchorEl}
+            anchorOrigin={{
+              vertical: 'top',
+              horizontal: 'right',
+            }}
+            keepMounted
+            transformOrigin={{
+              vertical: 'top',
+              horizontal: 'right',
+            }}
+            open={!!anchorEl}
+            onClose={handleClose}
           >
-            {signedIn ? 'Logout' : 'Login'}
-          </Button>
+            <MenuItem onClick={handleClose}>
+              <RouterLink to="/dashboard" color="inherit">
+                <Dashboard />
+                Dashboard
+              </RouterLink>
+            </MenuItem>
+            <MenuItem onClick={onClick}>
+              <RouterLink to="/auth/signin" color="inherit">
+                <ExitToApp />
+                Logout
+              </RouterLink>
+            </MenuItem>
+          </Menu>
         </Toolbar>
       </AppBar>
     </React.Fragment>

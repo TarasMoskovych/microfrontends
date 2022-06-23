@@ -68,7 +68,7 @@ const useStyles = makeStyles((theme) => ({
 
 const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
-export default function Album() {
+export default function Album({ isSignedIn }) {
   const classes = useStyles();
   const [state, setState] = useState({});
 
@@ -106,13 +106,15 @@ export default function Album() {
                     </Button>
                   </Link>
                 </Grid>
-                <Grid item>
-                  <Link to="/pricing">
-                    <Button variant="outlined" color="primary">
-                      Pricing
-                    </Button>
-                  </Link>
-                </Grid>
+                {isSignedIn &&
+                  <Grid item>
+                    <Link to="/dashboard">
+                      <Button variant="outlined" color="primary">
+                        Dashboard
+                      </Button>
+                    </Link>
+                  </Grid>
+                }
               </Grid>
             </div>
           </Container>

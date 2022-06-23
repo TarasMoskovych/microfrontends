@@ -10,6 +10,9 @@ const devConfig = {
   devServer: {
     port,
     historyApiFallback: true,
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+    },
   },
 };
 

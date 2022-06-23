@@ -9,14 +9,16 @@ const generateClassName = createGenerateClassName({
   productionPrefix: 'mfe-3',
 });
 
-export default ({ history }) => {
+export default ({ history, isSignedIn }) => {
   return (
     <div>
       <StylesProvider generateClassName={generateClassName}>
         <Router history={history}>
           <Switch>
-            <Route exact path="/pricing" component={Pricing}></Route>
-            <Route path="/" component={Landing}></Route>
+            <Route exact path="/pricing" component={Pricing} />
+            <Route path="/">
+              <Landing isSignedIn={isSignedIn} />
+            </Route>
           </Switch>
         </Router>
       </StylesProvider>
