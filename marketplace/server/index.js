@@ -4,13 +4,12 @@ const { JsonStorageStrategy } = require('./strategies/jsonstorage.strategy');
 const app = express();
 const PORT = process.env.PORT || 3001;
 const cors = require('cors');
-let productsService = new JsonStorageStrategy(process.env.DATABASE_URL);
 
-// if (process.env.PRODUCTION) {
-//   productsService = JsonStorageStrategy(process.env.DATABASE_URL);
-// } else {
-//   productsService = new FsStrategy('./data/products.json');
-// }
+if (process.env.PRODUCTION) {
+  productsService = new JsonStorageStrategy(process.env.DATABASE_URL);
+} else {
+  productsService = new FsStrategy('./data/products.json');
+}
 
 app.use(express.json({ extended: false }));
 app.use(cors());
