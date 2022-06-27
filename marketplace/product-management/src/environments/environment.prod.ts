@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  productManagementUrl: 'https://product-service.vercel.app',
 };
