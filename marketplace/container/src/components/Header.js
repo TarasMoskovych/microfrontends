@@ -47,13 +47,15 @@ const useStyles = makeStyles((theme) => ({
     },
     '& li': {
       justifyContent: 'flex-start',
-      padding: `${theme.spacing(1)}px ${theme.spacing(2)}px`,
       color: 'rgba(0, 0, 0, 0.87)',
+      padding: 0,
     },
     '& a': {
       alignItems: 'center',
       display: 'flex',
       color: 'rgba(0, 0, 0, 0.87)',
+      padding: `${theme.spacing(1)}px ${theme.spacing(2)}px`,
+      width: '100%',
     },
   },
   toolbar: {

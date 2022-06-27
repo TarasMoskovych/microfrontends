@@ -1,6 +1,7 @@
 const CopyPlugin = require('copy-webpack-plugin');
 const DefinePlugin = require('webpack/lib/DefinePlugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   module: {
@@ -16,6 +17,13 @@ module.exports = {
           },
         },
       },
+      {
+        test: /\.css$/,
+        use: [
+          MiniCssExtractPlugin.loader, // instead of style-loader
+          'css-loader',
+        ],
+      },
     ],
   },
   plugins: [
@@ -29,5 +37,6 @@ module.exports = {
       template: './public/index.html',
       favicon: './public/assets/favicon.ico',
     }),
+    new MiniCssExtractPlugin(),
   ],
 };

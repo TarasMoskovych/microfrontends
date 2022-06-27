@@ -22,7 +22,7 @@ You can access the hosted application at the following URLs:
 
 
 ## marketplace
-Simple project example using React + Vue with ModuleFederation plugin.
+Multiframework project using ModuleFederation plugin.
 
 ### Development server
 
@@ -40,3 +40,4 @@ You can access the hosted application at the following URLs:
 - auth: https://d30x72oakh2lkd.cloudfront.net/auth/latest/index.html
 - dashboard: https://d30x72oakh2lkd.cloudfront.net/dashboard/latest/index.html
 - marketing: https://d30x72oakh2lkd.cloudfront.net/marketing/latest/index.html
+- product-management: https://d30x72oakh2lkd.cloudfront.net/product-management/latest/index.html
