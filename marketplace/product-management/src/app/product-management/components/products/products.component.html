@@ -1,0 +1,6 @@
+<mat-selection-list [multiple]="false" (selectionChange)="onSelectProduct($event)" class="box">
+  <mat-list-option *ngFor="let product of products" [value]="product.id" [selected]="product.id === selected?.id">
+    {{ product.name }}
+    <mat-divider></mat-divider>
+  </mat-list-option>
+</mat-selection-list>

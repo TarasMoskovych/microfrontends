@@ -1,1 +1,30 @@
-<p>product-management works!</p>
+<div *ngIf="{ products: products$ | async } as data" fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="15px">
+  <div fxFlex="50">
+    <mat-toolbar color="primary">
+      <span>Products: {{ (data?.products?.length) }}</span>
+    </mat-toolbar>
+    <app-products
+      *ngIf="data.products && data.products.length"
+      [selected]="selected"
+      [products]="data.products"
+      (selectProduct)="onSelectProduct($event)"
+    ></app-products>
+  </div>
+  <div fxFlex="50">
+    <mat-toolbar color="primary">
+      <span>Manage product</span>
+    </mat-toolbar>
+    <div class="box">
+      <div fxLayout="row" fxLayoutAlign="end" [style.padding]="'15px'">
+        <button mat-raised-button color="primary" (click)="onAddProduct()">Add new Product</button>
+      </div>
+      <mat-divider></mat-divider>
+      <app-product-details
+        *ngIf="selected"
+        [product]="selected"
+        (editProduct)="onEditProduct($event)"
+        (deleteProduct)="onDeleteProduct($event)"
+      ></app-product-details>
+    </div>
+  </div>
+</div>
