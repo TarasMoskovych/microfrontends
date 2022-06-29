@@ -1,6 +1,6 @@
 const fetch = require('node-fetch');
 
-export class JsonStorageStrategy {
+class JsonStorageStrategy {
   constructor(dbUrl) {
     this.dbUrl = dbUrl;
   }
@@ -20,3 +20,5 @@ export class JsonStorageStrategy {
     });
   }
 }
+
+module.exports = { JsonStorageStrategy };

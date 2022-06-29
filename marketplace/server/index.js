@@ -12,7 +12,9 @@ if (process.env.PRODUCTION) {
 }
 
 app.use(express.json({ extended: false }));
-app.use(cors());
+app.use(cors({
+  origin: process.env.PRODUCTION ? process.env.ORIGIN : '*',
+}));
 
 app.get('/api/echo', (req, res) => {
   res.send({ message: 'Hello, world!' })

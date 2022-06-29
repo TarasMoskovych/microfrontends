@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-export class FsStrategy {
+class FsStrategy {
   constructor(path) {
     this.path = path;
   }
@@ -13,3 +13,5 @@ export class FsStrategy {
     fs.writeFileSync(this.path, data);
   }
 }
+
+module.exports = { FsStrategy };
