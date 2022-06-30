@@ -3,26 +3,17 @@ import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
+import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import Container from '@material-ui/core/Container';
-import MaterialLink from '@material-ui/core/Link';
+import EditIcon from '@material-ui/icons/Edit';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import Grid from '@material-ui/core/Grid';
+import IconButton from '@material-ui/core/IconButton';
+import Typography from '@material-ui/core/Typography';
 import { Link } from 'react-router-dom';
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <MaterialLink component={Link} to="/" color="inherit">
-        Your Website
-      </MaterialLink>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   '@global': {
@@ -60,17 +51,15 @@ const useStyles = makeStyles((theme) => ({
   cardContent: {
     flexGrow: 1,
   },
-  footer: {
-    backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(6),
+  loader: {
+    textAlign: 'center',
   },
 }));
 
-const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-
-export default function Album({ isSignedIn }) {
+export default function Album({ isSignedIn, products }) {
   const classes = useStyles();
-  const [state, setState] = useState({});
+  const [hovered, setHovered] = useState({});
+  const [favorite, setFavorite] = useState({});
 
   return (
     <React.Fragment>
@@ -119,63 +108,59 @@ export default function Album({ isSignedIn }) {
             </div>
           </Container>
         </div>
-        <Container className={classes.cardGrid} maxWidth="md">
-          {/* End hero unit */}
-          <Grid container spacing={4}>
-            {cards.map((card) => (
-              <Grid item key={card} xs={12} sm={6} md={4}>
-                <Card
-                  className={classes.card}
-                  classes={{root: state[card]?.raised ? classes.cardHovered : ''}}
-                  onMouseOver={() => setState({ [card]: { raised: true, shadow: 3 }})}
-                  onMouseOut={() => setState({ [card]: { raised: false, shadow: 1 }})}
-                  raised={state[card]?.raised}
-                  zdepth={state[card]?.shadow}
-                >
-                  <CardMedia
-                    className={classes.cardMedia}
-                    image={'https://source.unsplash.com/random/' + card}
-                    title="Image title"
-                  />
-                  <CardContent className={classes.cardContent}>
-                    <Typography gutterBottom variant="h5" component="h2">
-                      Heading
-                    </Typography>
-                    <Typography>
-                      This is a media card. You can use this section to describe
-                      the content.
-                    </Typography>
-                  </CardContent>
-                  <CardActions>
-                    <Button size="small" color="primary">
-                      View
-                    </Button>
-                    <Button size="small" color="primary">
-                      Edit
-                    </Button>
-                  </CardActions>
-                </Card>
-              </Grid>
-            ))}
-          </Grid>
-        </Container>
+        {!products &&
+          <div className={classes.loader}>
+            <CircularProgress />
+          </div>
+        }
+        {products?.length &&
+          <Container className={classes.cardGrid} maxWidth="md">
+            <Grid container spacing={4}>
+              {products.map((product) => (
+                <Grid item key={product.id} xs={12} sm={6} md={4}>
+                  <Card
+                    className={classes.card}
+                    classes={{ root: hovered[product.id]?.raised ? classes.cardHovered : '' }}
+                    onMouseOver={() => setHovered({ [product.id]: { raised: true, shadow: 3 } })}
+                    onMouseOut={() => setHovered({ [product.id]: { raised: false, shadow: 1 } })}
+                    raised={hovered[product.id]?.raised}
+                    zdepth={hovered[product.id]?.shadow}
+                  >
+                    <CardMedia
+                      className={classes.cardMedia}
+                      image={product.imageUrl}
+                      title="Image title"
+                    />
+                    <CardHeader
+                      title={product.name}
+                      subheader={`${product.price}$`}
+                    />
+                    <CardContent className={classes.cardContent}>
+                      <Typography>
+                        {product.description.slice(0, 200)}...
+                      </Typography>
+                    </CardContent>
+                    {isSignedIn &&
+                      <CardActions disableSpacing>
+                        <IconButton aria-label="edit" component={Link} to={'/product-management'}>
+                          <EditIcon />
+                        </IconButton>
+                        <IconButton
+                          aria-label="favorite"
+                          color={favorite[product.id] ? 'primary' : 'default'}
+                          onClick={() => setFavorite({ ...favorite, [product.id]: !favorite[product.id] })}
+                        >
+                          <FavoriteIcon />
+                        </IconButton>
+                      </CardActions>
+                    }
+                  </Card>
+                </Grid>
+              ))}
+            </Grid>
+          </Container>
+        }
       </main>
-      {/* Footer */}
-      <footer className={classes.footer}>
-        <Typography variant="h6" align="center" gutterBottom>
-          Footer
-        </Typography>
-        <Typography
-          variant="subtitle1"
-          align="center"
-          color="textSecondary"
-          component="p"
-        >
-          Something here to give the footer a purpose!
-        </Typography>
-        <Copyright />
-      </footer>
-      {/* End footer */}
     </React.Fragment>
   );
 }

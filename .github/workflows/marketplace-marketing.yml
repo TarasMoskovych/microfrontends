@@ -18,6 +18,8 @@ jobs:
       - uses: actions/checkout@v2
       - run: npm ci
       - run: npm run build
+        env:
+          PRODUCT_SERVICE_URL: ${{ secrets.PRODUCT_SERVICE_URL }}
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:

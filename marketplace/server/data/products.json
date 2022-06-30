@@ -4,55 +4,62 @@
     "name": "Apple - iPhone 13 mini 5G 128GB - Midnight",
     "price": 500,
     "description": "iPhone 13 mini. The most advanced dual-camera system ever on iPhone. Lightning-fast A15 Bionic chip. A leap in battery life. Durable design. Superfast 5G.¹ And a brighter Super Retina XDR display.",
-    "imageUrl": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6443/6443301_sd.jpg;maxHeight=640;maxWidth=550"
+    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSR8hQMBzDpqgHIAq711z25e7xCl3WpW4_eGQ&usqp=CAU"
   },
   {
     "id": 1656065449051,
     "name": "Samsung - Galaxy A53 5G 128GB",
     "price": 449.99,
     "description": "Indulge in 6.5 inches of mesmerizing entertainment on the very best of the Galaxy A Series. Experience an FHD Super AMOLED screen for a crystal-clear view, stereo speakers for a surround sound feel, and a long-lasting battery for streaming your favorite content. Plus, keeping up with your people is virtually lag-free. Everything you love, all in one.",
-    "imageUrl": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6501/6501376_sd.jpg;maxHeight=640;maxWidth=550"
+    "imageUrl": "https://fdn.gsmarena.com/imgroot/reviews/22/samsung-galaxy-a53-5g//lifestyle/-1200w5/gsmarena_017.jpg"
   },
   {
     "id": 1656065449052,
     "name": "Google - Pixel 6 Pro 128GB",
     "price": 899.00,
     "description": "Introducing Pixel 6 Pro, the completely redesigned, fully loaded Google 5G phone.* With a powerful camera system, next-gen security, and the custom-built Google Tensor processor, it’s the smartest and fastest Pixel yet.",
-    "imageUrl": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6483/6483636_sd.jpg;maxHeight=640;maxWidth=550"
+    "imageUrl": "https://www.xda-developers.com/files/2021/09/Google_Pixel_6_6_Pro_1-1024x683.jpg"
   },
   {
     "id": 1656065449053,
     "name": "Samsung - Galaxy S21 FE 5G 128GB",
     "price": 499.99,
     "description": "Take your everyday experiences to the next level with the phone that's designed to fuel the passions of every fan. Whether you're a gaming guru, social star or fashionista, Samsung Galaxy S21 FE 5G is jam-packed with features that help you get more out of whatever you're into, including an All-Day Intelligent Battery, a powerful processor, a smooth and strong display, a triple-lens camera and more. Plus, choose from four colors for a stylish look that will set off your fan vibe.",
-    "imageUrl": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6465/6465019cv18d.jpg;maxHeight=640;maxWidth=550"
+    "imageUrl": "https://img.global.news.samsung.com/global/wp-content/uploads/2021/12/Galaxy-S21-FE-5G-PR-main1.jpg"
   },
   {
     "id": 1656065449054,
-    "name": "Apple - Pre-Owned iPhone 11 Pro 256GB",
+    "name": "Apple - iPhone 11 Pro 256GB",
     "price": 599.99,
     "description": "iPhone 11 Pro lets you zoom from the Telephoto all the way out to the new Ultra Wide camera, for an impressive 4x optical zoom range.",
-    "imageUrl": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6502/6502953_sd.jpg;maxHeight=640;maxWidth=550"
+    "imageUrl": "https://www.aaryanfirmware.com/images/apple-iphone-11-pro-256gb-6gb-ram-price.jpg"
   },
   {
     "id": 1656065449055,
     "name": "Samsung - Galaxy Z Fold3 5G 512GB",
     "price": 1499.99,
     "description": "Unfold a world of possibilities with Samsung Galaxy Z Fold3 5G. You can do it all on this incredible device that’s so much more than a phone — it’s a compact yet powerful tablet that helps you master your busy life. Bring your workspace anywhere with a foldable, expansive screen that gives you multiple windows that make multitasking a breeze.",
-    "imageUrl": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6466/6466009_sd.jpg;maxHeight=640;maxWidth=550"
+    "imageUrl": "https://hotline.ua/img/upload/images/r/w/61e09093ad4ac.jpg"
   },
   {
     "id": 1656065449056,
     "name": "Apple - iPhone 13 Pro Max 5G 256GB",
     "price": 600.99,
     "description": "iPhone 13 Pro Max. The biggest Pro camera system upgrade ever. Super Retina XDR display with ProMotion for a faster, more responsive feel. Lightning-fast A15 Bionic chip. Superfast 5G. Durable design and the best battery life ever in an iPhone.",
-    "imageUrl": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6443/6443342_sd.jpg;maxHeight=640;maxWidth=550"
+    "imageUrl": "https://cdn.shopify.com/s/files/1/0620/8402/2504/products/PhotoRoom_20220330_175916_1100x.png?v=1648844577"
   },
-    {
+  {
     "id": 1656065449057,
     "name": "Apple - iPhone 11 64GB",
     "price": 300.99,
     "description": "Shoot 4K videos, beautiful portraits, and sweeping landscapes with the all-new dual-camera system. Capture your best low-light photos with Night mode. See true-to-life color in your photos, videos, and games on the 6.1-inch Liquid Retina display. Experience unprecedented performance with A13 Bionic for gaming, augmented reality (AR), and photography. Do more and charge less with all-day battery life.² And worry less with water resistance up to 2 meters for 30 minutes.",
-    "imageUrl": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6441/6441749_sd.jpg;maxHeight=640;maxWidth=550"
+    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQC9zNmV667NZX72vrtHkavNj4IQOWFkrtkJg&usqp=CAU"
+  },
+  {
+    "id": 1656065449058,
+    "name": "Apple - iPhone X",
+    "price": 200.99,
+    "description": "Since the release of the iPhone XS, the 2017 iPhone X is hard to get. But it's still worth a look if you can get a good deal.",
+    "imageUrl": "https://www.cnet.com/a/img/resize/755704844d1e6efc7481dc5c1ebf577eb1e7c733/hub/2017/10/31/312b3b6e-59b7-499a-aea4-9bc5f9721a21/iphone-x-54.jpg?auto=webp&width=768"
   }
 ]
