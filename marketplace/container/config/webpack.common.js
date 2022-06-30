@@ -4,6 +4,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
+  resolve: {
+    extensions: [ '.tsx', '.ts', '.js' ],
+  },
   module: {
     rules: [
       {
@@ -16,6 +19,11 @@ module.exports = {
             plugins: ['@babel/plugin-transform-runtime'],
           },
         },
+      },
+      {
+        test: /\.tsx?$/,
+        exclude: /node_modules/,
+        loader: 'ts-loader',
       },
       {
         test: /\.css$/,

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link as RouterLink } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
@@ -75,9 +76,9 @@ export default () => {
       <Box mt={5}>
         <Typography variant="body2" color="textSecondary" align="center">
           {'Copyright © '}
-          <Link color="inherit" to="/">
+          <RouterLink to="/">
             Your Website
-          </Link>{' '}
+          </RouterLink>{' '}
           {new Date().getFullYear()}
           {'.'}
         </Typography>

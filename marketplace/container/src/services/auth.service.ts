@@ -1,22 +1,26 @@
 export class AuthService {
-  authKey = 'marketplace:auth-data';
+  private authKey = 'marketplace:auth-data';
 
-  getAuthData() {
+  getAuthData(): string | null {
     return window.localStorage.getItem(this.authKey);
   }
 
-  isAuthenticated() {
+  isAuthenticated(): boolean {
     return !!this.getAuthData();
   }
 
-  authenticate(data, cb) {
+  authenticate(data: AuthPayload, cb: () => void): void {
     setTimeout(() => {
       window.localStorage.setItem(this.authKey, JSON.stringify(data));
       cb();
     }, 1000);
   }
 
-  logout() {
+  logout(): void {
     window.localStorage.removeItem(this.authKey);
   }
+}
+
+export interface AuthPayload {
+  email: string;
 }

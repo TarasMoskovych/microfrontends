@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import AppBar from '@material-ui/core/AppBar';
-import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
@@ -38,6 +37,10 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(1),
     position: 'relative',
     top: theme.spacing(1),
+    '& img': {
+      height: 50,
+      width: 50,
+    },
   },
   menu: {
     display: 'flex',
@@ -92,11 +95,16 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Header({ signedIn, onSignOut }) {
+interface IProps {
+  signedIn: boolean;
+  onSignOut: () => void;
+}
+
+export default ({ signedIn, onSignOut }: IProps) => {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState(null);
 
-  const handleMenu = (event) => setAnchorEl(event.currentTarget);
+  const handleMenu = (event: any) => setAnchorEl(event.currentTarget);
   const handleClose = () => setAnchorEl(null);
 
   const onClick = () => {
@@ -118,16 +126,9 @@ export default function Header({ signedIn, onSignOut }) {
         <Toolbar className={classes.toolbar}>
           <div className={classes.boxWrapper}>
             <RouterLink to="/">
-              <Box
-                className={classes.box}
-                component="img"
-                sx={{
-                  height: 50,
-                  width: 50,
-                }}
-                alt="Logo."
-                src={`${ASSETS_URL}/logo.svg`}
-              />
+              <div className={classes.box}>
+                <img src={`${ASSETS_URL}/logo.svg`} alt="Logo" />
+              </div>
             </RouterLink>
             <Typography
               variant="h6"
@@ -202,4 +203,4 @@ export default function Header({ signedIn, onSignOut }) {
       </AppBar>
     </React.Fragment>
   );
-}
+};

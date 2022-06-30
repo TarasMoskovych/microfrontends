@@ -4,7 +4,7 @@ import { StylesProvider, createGenerateClassName } from '@material-ui/core/style
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Progress from './components/Progress';
-import { AuthService } from './services/auth.service';
+import { AuthPayload, AuthService } from './services/auth.service';
 
 const AuthApp = lazy(() => import('./components/AuthApp'));
 const DashboardApp = lazy(() => import('./components/DashboardApp'));
@@ -19,7 +19,7 @@ export default () => {
   const authService = new AuthService();
   const [isSignedIn, setSignedIn] = useState(() => authService.isAuthenticated());
 
-  const onSignIn = (data, { onDone }, redirect) => {
+  const onSignIn = (data: AuthPayload, onDone: () => void, redirect: () => void) => {
     authService.authenticate({ email: data.email }, () => {
       onDone();
       setSignedIn(true);
