@@ -8,8 +8,20 @@ export class ProductsService {
 
   constructor(private readonly httpClient: HttpClient) { }
 
-  getProducts(): Observable<IProduct[]> {
+  getAll(): Observable<IProduct[]> {
     return this.httpClient.get<IProduct[]>(`${environment.productManagementUrl}/api/products`);
+  }
+
+  create(product: IProduct): Observable<IProduct> {
+    return this.httpClient.post<IProduct>(`${environment.productManagementUrl}/api/product`, product);
+  }
+
+  update(product: IProduct): Observable<IProduct> {
+    return this.httpClient.put<IProduct>(`${environment.productManagementUrl}/api/product/${product.id}`, product);
+  }
+
+  delete(product: IProduct): Observable<void> {
+    return this.httpClient.delete<void>(`${environment.productManagementUrl}/api/product/${product.id}`);
   }
 }
 

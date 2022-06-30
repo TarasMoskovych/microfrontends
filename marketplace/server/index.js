@@ -1,15 +1,11 @@
 const express = require('express');
 const { FsStrategy } = require('./strategies/fs.strategy');
 const { JsonStorageStrategy } = require('./strategies/jsonstorage.strategy');
+const { ProductsService } = require('./services/products.service');
 const app = express();
 const PORT = process.env.PORT || 3001;
 const cors = require('cors');
-
-if (process.env.PRODUCTION) {
-  productsService = new JsonStorageStrategy(process.env.DATABASE_URL);
-} else {
-  productsService = new FsStrategy('./data/products.json');
-}
+const productsService = new ProductsService(process.env.PRODUCTION ? new JsonStorageStrategy(process.env.DATABASE_URL) : new FsStrategy('./data/products.json'));
 
 app.use(express.json({ extended: false }));
 app.use(cors({
@@ -21,18 +17,20 @@ app.get('/api/echo', (req, res) => {
 });
 
 app.get('/api/products', async(req, res) => {
-  res.send(await productsService.getData());
+  res.send(await productsService.getAll());
 });
 
 app.post('/api/product', async(req, res) => {
-  const products = await productsService.getData();
-  const newProduct = {
-    id: Date.now(),
-    ...req.body,
-  };
+  res.send(await productsService.create(req.body));
+});
 
-  await productsService.saveData(JSON.stringify([...products, newProduct]));
-  res.send(newProduct);
+app.put('/api/product/:id', async(req, res) => {
+  res.send(await productsService.update(req.params.id, req.body));
+});
+
+app.delete('/api/product/:id', async(req, res) => {
+  await productsService.delete(req.params.id);
+  res.status(200).send();
 });
 
 app.listen(PORT, () => console.log(`Server is running in port ${PORT}`));
