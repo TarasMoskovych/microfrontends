@@ -3,9 +3,11 @@
     <div class="card">
       <DataTable
         :value="products"
-        class="p-datatable-customers"
         :rows="5"
         :rowsPerPageOptions="[5, 10, 25, 50]"
+        :sortOrder="-1"
+        responsiveLayout="scroll"
+        sortField="price"
         style="margin-bottom: 20px"
         :paginator="true">
         <Column>
