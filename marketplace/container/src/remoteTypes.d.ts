@@ -6,7 +6,7 @@ declare module 'auth/mount' {
 }
 
 declare module 'dashboard/mount' {
-  function mount(container: HTMLElement | null);
+  function mount(container: HTMLElement | null, data: any);
   export const { mount };
 }
 

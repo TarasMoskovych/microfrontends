@@ -1,3 +1,4 @@
+const DefinePlugin = require('webpack/lib/DefinePlugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
 const { VueLoaderPlugin } = require('vue-loader');
@@ -39,6 +40,7 @@ module.exports = {
     ],
   },
   plugins: [
+    new DefinePlugin({ PRODUCT_SERVICE_URL: JSON.stringify(process.env.PRODUCT_SERVICE_URL || 'http://localhost:3001') }),
     new HtmlWebpackPlugin({
       template: './public/index.html',
     }),
