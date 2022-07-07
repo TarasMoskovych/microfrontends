@@ -1,8 +1,12 @@
 <template>
-  <div v-if="products.length" class="p-grid p-fluid dashboard">
-    <Summary :products="products" />
-    <Statistic :products="products" />
-    <ProductsTable :products="products" @productEdit="onProductEdit" />
+  <div v-if="products" class="p-grid p-fluid dashboard">
+    <NoProducts v-if="!products.length" />
+    <Summary v-if="products.length" :products="products" />
+    <Statistic v-if="products.length" :products="products" />
+    <ProductsTable v-if="products.length" :products="products" @productEdit="onProductEdit" />
+  </div>
+  <div v-else class="dashboard-loader">
+    <ProgressSpinner style="width:100px; height:100px" strokeWidth="2" />
   </div>
 </template>
 
@@ -12,19 +16,23 @@ import 'primevue/resources/primevue.css';
 import 'primeflex/primeflex.css';
 import 'primeicons/primeicons.css';
 
+import ProgressSpinner from 'primevue/progressspinner';
+import NoProducts from './NoProducts';
 import ProductsTable from './ProductsTable';
 import Statistic from './Statistic';
 import Summary from './Summary';
 
 export default {
   components: {
+    ProgressSpinner,
+    NoProducts,
     ProductsTable,
     Statistic,
     Summary,
   },
   data() {
     return {
-      products: [],
+      products: null,
       totalPrice: 0,
       expensiveProduct: null,
     };
@@ -33,13 +41,15 @@ export default {
     onProductEdit: Function,
   },
   methods: {
-    async getProducts() {
-      const response = await fetch(`${PRODUCT_SERVICE_URL}/api/products`);
-      return await response.json();
+    getProducts() {
+      fetch(`${PRODUCT_SERVICE_URL}/api/products`)
+        .then((response) => response.json())
+        .then(products => this.products = products)
+        .catch(() => this.products = []);
     },
   },
-  async mounted() {
-    this.products = await this.getProducts();
+  mounted() {
+    this.getProducts();
   }
 };
 </script>
@@ -47,11 +57,20 @@ export default {
 <style lang="scss">
 $borderRadius: 3px;
 
+body {
+  margin: 0;
+}
+
 .dashboard {
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica,
     Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
   background-color: #edf0f5;
   padding: 15px 10px;
+
+  &-loader {
+    padding: 20px 0;
+    text-align: center;
+  }
 
   .summary {
     position: relative;

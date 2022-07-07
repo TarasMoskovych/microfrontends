@@ -3,12 +3,20 @@
     <mat-toolbar color="primary">
       <span>Products: {{ (data?.products?.length) }}</span>
     </mat-toolbar>
-    <app-products
-      *ngIf="data.products && data.products.length"
-      [selected]="selected"
-      [products]="data.products"
-      (selectProduct)="onSelectProduct($event)"
-    ></app-products>
+    <ng-container *ngIf="data.products">
+      <app-products
+        *ngIf="data.products.length; else noProducts"
+        [selected]="selected"
+        [products]="data.products"
+        (selectProduct)="onSelectProduct($event)"
+      ></app-products>
+      <ng-template #noProducts>
+        <app-no-products></app-no-products>
+      </ng-template>
+    </ng-container>
+    <div *ngIf="!data.products" class="box" [style.padding]="'15px'" fxLayout="row" fxLayoutAlign="center">
+      <mat-spinner [diameter]="60" [strokeWidth]="4"></mat-spinner>
+    </div>
   </div>
   <div fxFlex="50">
     <mat-toolbar color="primary">

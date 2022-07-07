@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { catchError, Observable, of } from 'rxjs';
 import { environment } from './../../../environments/environment';
 
 @Injectable()
@@ -9,7 +9,9 @@ export class ProductsService {
   constructor(private readonly httpClient: HttpClient) { }
 
   getAll(): Observable<IProduct[]> {
-    return this.httpClient.get<IProduct[]>(`${environment.productManagementUrl}/api/products`);
+    return this.httpClient.get<IProduct[]>(`${environment.productManagementUrl}/api/products`).pipe(
+      catchError(() => of([])),
+    );
   }
 
   create(product: IProduct): Observable<IProduct> {

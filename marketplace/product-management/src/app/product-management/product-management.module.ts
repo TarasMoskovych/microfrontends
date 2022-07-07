@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -19,7 +20,7 @@ import { ProductDetailsComponent } from './components/product-details/product-de
 import { ProductsService } from './services/products.service';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 import { ProductFormComponent } from './components/product-form/product-form.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NoProductsComponent } from './components/no-products/no-products.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ProductDetailsComponent,
     ConfirmDialogComponent,
     ProductFormComponent,
+    NoProductsComponent,
   ],
   imports: [
     CommonModule,
