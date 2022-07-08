@@ -63,7 +63,7 @@ export default function Album({ isSignedIn, products }) {
 
   return (
     <React.Fragment>
-      <main>
+      <div>
         {/* Hero unit */}
         <div className={classes.heroContent}>
           <Container maxWidth="sm">
@@ -160,7 +160,7 @@ export default function Album({ isSignedIn, products }) {
             </Grid>
           </Container>
         }
-      </main>
+      </div>
     </React.Fragment>
   );
 }

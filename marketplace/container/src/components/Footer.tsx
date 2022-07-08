@@ -54,35 +54,37 @@ export default () => {
   const classes = useStyles();
 
   return (
-    <Container maxWidth="md" component="footer" className={classes.footer}>
-      <Grid container spacing={4} justifyContent="space-evenly">
-        {footers.map((footer) => (
-          <Grid item xs={6} sm={3} key={footer.title}>
-            <Typography variant="h6" color="textPrimary" gutterBottom>
-              {footer.title}
-            </Typography>
-            <ul>
-              {footer.description.map((item) => (
-                <li key={item}>
-                  <Link href="#" variant="subtitle1" color="textSecondary">
-                    {item}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </Grid>
-        ))}
-      </Grid>
-      <Box mt={5}>
-        <Typography variant="body2" color="textSecondary" align="center">
-          {'Copyright © '}
-          <RouterLink to="/">
-            Your Website
-          </RouterLink>{' '}
-          {new Date().getFullYear()}
-          {'.'}
-        </Typography>
-      </Box>
-    </Container>
+    <footer className={classes.footer}>
+      <Container maxWidth="md">
+        <Grid container spacing={4} justifyContent="space-evenly">
+          {footers.map((footer) => (
+            <Grid item xs={6} sm={3} key={footer.title}>
+              <Typography variant="h6" color="textPrimary" gutterBottom>
+                {footer.title}
+              </Typography>
+              <ul>
+                {footer.description.map((item) => (
+                  <li key={item}>
+                    <Link href="#" variant="subtitle1" color="textSecondary">
+                      {item}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </Grid>
+          ))}
+        </Grid>
+        <Box mt={5}>
+          <Typography variant="body2" color="textSecondary" align="center">
+            {'Copyright © '}
+            <RouterLink to="/">
+              Your Website
+            </RouterLink>{' '}
+            {new Date().getFullYear()}
+            {'.'}
+          </Typography>
+        </Box>
+      </Container>
+    </footer>
   );
 };

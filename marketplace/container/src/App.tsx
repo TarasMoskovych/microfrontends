@@ -36,7 +36,7 @@ export default () => {
     <BrowserRouter>
       <StylesProvider generateClassName={generateClassName}>
         <Header signedIn={isSignedIn} onSignOut={onSignOut} />
-        <div style={{ marginTop: 66 }}>
+        <main style={{ marginTop: 66 }}>
           <Suspense fallback={<Progress />}>
             <Switch>
               <Route path="/auth">
@@ -55,7 +55,7 @@ export default () => {
               </Route>
             </Switch>
           </Suspense>
-        </div>
+        </main>
         <Footer />
       </StylesProvider>
     </BrowserRouter>
