@@ -1,6 +1,7 @@
 import { DOCUMENT } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Inject, OnInit, Renderer2 } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Inject, Input, Output, Renderer2 } from '@angular/core';
 import { NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap';
+import { IUser } from 'src/app/modules/core/services/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -9,7 +10,10 @@ import { NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap';
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [NgbDropdownConfig]
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent {
+  @Input() user!: IUser;
+  @Output() signout = new EventEmitter<void>();
+
   public iconOnlyToggled = false;
   public sidebarToggled = false;
 
@@ -19,9 +23,6 @@ export class NavbarComponent implements OnInit {
     config: NgbDropdownConfig,
   ) {
     config.placement = 'bottom-right';
-  }
-
-  ngOnInit() {
   }
 
   toggleOffcanvas(): void {

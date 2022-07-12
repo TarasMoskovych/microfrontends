@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { BehaviorSubject, finalize } from 'rxjs';
 import { AuthService, IUser } from '../../services/auth.service';
 
 @Component({
@@ -10,6 +11,7 @@ import { AuthService, IUser } from '../../services/auth.service';
 })
 export class SignInComponent implements OnInit {
   form!: FormGroup;
+  loading$ = new BehaviorSubject<boolean>(false);
 
   constructor(
     private readonly fb: FormBuilder,
@@ -24,8 +26,16 @@ export class SignInComponent implements OnInit {
     this.form.markAllAsTouched();
 
     if (this.form.valid) {
+      this.loading$.next(true);
+
       this.authService.login(this.form.value)
-        .subscribe((user: IUser) => console.log(user));
+        .pipe(
+          finalize(() => {
+            this.form.reset();
+            this.loading$.next(false);
+          }),
+        )
+        .subscribe();
     }
   }
 

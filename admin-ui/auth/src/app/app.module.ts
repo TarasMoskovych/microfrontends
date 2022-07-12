@@ -4,6 +4,13 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { IUser } from './auth/services/auth.service';
+
+const authCallback = {
+  onLoggedIn: (user: IUser) => {
+    console.log('submit loggin form', user);
+  },
+};
 
 @NgModule({
   declarations: [
@@ -14,7 +21,12 @@ import { AppComponent } from './app.component';
     HttpClientModule,
     AppRoutingModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: 'AUTH_CALLBACK',
+      useValue: authCallback,
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

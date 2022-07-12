@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { IUser } from 'src/app/modules/core/services/auth.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -7,10 +8,10 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SidebarComponent implements OnInit {
+  @Input() user!: IUser;
+
   public uiBasicCollapsed = false;
   public samplePagesCollapsed = false;
-
-  constructor() { }
 
   ngOnInit() {
     const body = document.querySelector('body') as HTMLElement;
