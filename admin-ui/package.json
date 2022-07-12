@@ -1,0 +1,18 @@
+{
+  "name": "admin-ui",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm-run-all --parallel serve:container",
+    "serve:container": "npm run start --prefix ./container",
+    "install:container": "cd ./container && npm i",
+    "postinstall": "npm-run-all --parallel install:container"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "npm-run-all": "^4.1.5"
+  }
+}
