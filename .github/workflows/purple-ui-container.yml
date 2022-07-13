@@ -1,0 +1,39 @@
+name: purple-ui:deploy-container
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'purple-ui/container/**'
+
+defaults:
+  run:
+    working-directory: purple-ui/container
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: npm ci
+      - run: npm run build
+        env:
+          PRODUCTION_DOMAIN: ${{ secrets.PURPLE_UI_PRODUCTION_DOMAIN }}
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+      - name: Copy files to the s3 website content bucket
+        run:
+          aws s3 sync dist/purple-ui s3://${{ secrets.PURPLE_UI_AWS_S3_BUCKET_NAME }}/container/latest
+      - name: Invalidate CloudFront
+        uses: chetan/invalidate-cloudfront-action@v2
+        env:
+          DISTRIBUTION: ${{ secrets.PURPLE_UI_AWS_DISTRIBUTION_ID }}
+          PATHS: "/container/latest/index.html"
+          AWS_REGION: "us-east-1"
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
