@@ -36,6 +36,7 @@
           },
           "configurations": {
             "production": {
+              "deployUrl": "/auth/latest/",
               "budgets": [
                 {
                   "type": "initial",

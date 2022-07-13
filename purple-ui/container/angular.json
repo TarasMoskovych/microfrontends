@@ -37,6 +37,7 @@
           },
           "configurations": {
             "production": {
+              "deployUrl": "/container/latest/",
               "budgets": [
                 {
                   "type": "initial",
