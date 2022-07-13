@@ -12,6 +12,7 @@ module.exports = ({ publicPath }) => ({
   output: {
     uniqueName: 'auth',
     publicPath,
+    scriptType: 'text/javascript',
   },
   optimization: {
     runtimeChunk: false

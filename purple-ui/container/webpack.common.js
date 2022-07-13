@@ -12,6 +12,7 @@ module.exports = ({ publicPath, remotes }) => ({
   output: {
     uniqueName: 'purpleUi',
     publicPath,
+    scriptType: 'text/javascript',
   },
   optimization: {
     runtimeChunk: false
