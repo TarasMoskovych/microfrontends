@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "admin-ui": {
+    "purple-ui": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -18,7 +18,7 @@
         "build": {
           "builder": "ngx-build-plus:browser",
           "options": {
-            "outputPath": "dist/admin-ui",
+            "outputPath": "dist/purple-ui",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -73,11 +73,11 @@
           "builder": "ngx-build-plus:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "admin-ui:build:production",
+              "browserTarget": "purple-ui:build:production",
               "extraWebpackConfig": "webpack.prod.config.js"
             },
             "development": {
-              "browserTarget": "admin-ui:build:development"
+              "browserTarget": "purple-ui:build:development"
             }
           },
           "defaultConfiguration": "development",
@@ -90,7 +90,7 @@
         "extract-i18n": {
           "builder": "ngx-build-plus:extract-i18n",
           "options": {
-            "browserTarget": "admin-ui:build",
+            "browserTarget": "purple-ui:build",
             "extraWebpackConfig": "webpack.config.js"
           }
         },

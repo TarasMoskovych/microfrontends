@@ -1,29 +1,26 @@
-import { Inject, Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable, OperatorFunction, pluck, tap } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class AuthService {
-  constructor(
-    private readonly http: HttpClient,
-    @Inject('AUTH_CALLBACK') private readonly authCallback: { onLoggedIn: (user: IUser) => void },
-  ) {
+  private readonly sessionKey = 'purple-ui:auth-data';
+
+  constructor(private readonly router: Router) { }
+
+  getUser(): IUser {
+    return JSON.parse(sessionStorage.getItem(this.sessionKey) as string);
   }
 
-  login(data: IUserCredentials): Observable<IUser> {
-    return this.http.get('https://randomuser.me/api').pipe(
-      pluck('results', '0') as OperatorFunction<Object, IUser>,
-      tap((user: IUser) => {
-        sessionStorage.setItem('admin-ui:auth-data', JSON.stringify(user))
-        this.authCallback.onLoggedIn(user);
-      }),
-    )
+  onLoggedIn(): void {
+    this.router.navigateByUrl('/dashboard');
   }
-}
 
-export interface IUserCredentials {
-  username: string;
-  password: string;
+  signout(): void {
+    sessionStorage.removeItem(this.sessionKey);
+    this.router.navigateByUrl('/auth/signin');
+  }
 }
 
 export interface IUser {

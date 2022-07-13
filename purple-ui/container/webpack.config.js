@@ -10,7 +10,7 @@ sharedMappings.register(
 
 module.exports = {
   output: {
-    uniqueName: 'adminUi',
+    uniqueName: 'purpleUi',
     publicPath: 'http://localhost:8080/',
   },
   optimization: {
