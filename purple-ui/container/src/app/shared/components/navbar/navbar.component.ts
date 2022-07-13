@@ -1,7 +1,7 @@
 import { DOCUMENT } from '@angular/common';
 import { ChangeDetectionStrategy, Component, EventEmitter, Inject, Input, Output, Renderer2 } from '@angular/core';
 import { NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap';
-import { IUser } from 'src/app/modules/core/services/auth.service';
+import { IUser } from 'src/app/core/services/user.service';
 
 @Component({
   selector: 'app-navbar',

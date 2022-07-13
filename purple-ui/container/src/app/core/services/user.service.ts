@@ -1,24 +1,29 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+export class UserService {
   private readonly sessionKey = 'purple-ui:auth-data';
+  private readonly user$ = new BehaviorSubject<IUser | null>(null);
 
   constructor(private readonly router: Router) { }
 
-  getUser(): IUser {
-    return JSON.parse(sessionStorage.getItem(this.sessionKey) as string);
+  getUser(): Observable<IUser> {
+    this.user$.next(JSON.parse(sessionStorage.getItem(this.sessionKey) as string));
+    return this.user$.asObservable() as Observable<IUser>;
   }
 
-  onLoggedIn(): void {
+  onLoggedIn(user: IUser): void {
+    this.user$.next(user);
     this.router.navigateByUrl('/dashboard');
   }
 
   signout(): void {
     sessionStorage.removeItem(this.sessionKey);
+    this.user$.next(null);
     this.router.navigateByUrl('/auth/signin');
   }
 }

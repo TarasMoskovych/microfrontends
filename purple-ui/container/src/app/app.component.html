@@ -1,1 +1,22 @@
-<router-outlet></router-outlet>
+<div *ngIf="{ user: user$ | async } as data" class="container-scroller">
+  <app-navbar
+    *ngIf="data.user as user"
+    [user]="user"
+    (signout)="onSignout()"
+  ></app-navbar>
+  <div class="container-fluid page-body-wrapper" [class.full-page-wrapper]="!data.user">
+    <app-sidebar
+      *ngIf="data.user as user"
+      [user]="user"
+    ></app-sidebar>
+    <div class="main-panel" [ngClass]="{ 'main-panel-only w-100' : !data.user }">
+      <div class="content-wrapper">
+        <app-spinner *ngIf="isLoading"></app-spinner>
+        <div contentAnimate *ngIf="!isLoading" class="h-100">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+      <app-footer *ngIf="data.user"></app-footer>
+    </div>
+  </div>
+</div>

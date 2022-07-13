@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ShellComponent } from './shell.component';
+
 import {
   FooterComponent,
   NavbarComponent,
@@ -13,35 +13,26 @@ import {
 import {
   ContentAnimateDirective,
 } from './directives';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-
-const routes: Routes = [
-  {
-    path: '',
-    component: ShellComponent,
-    children: [
-      {
-        path: 'dashboard',
-        component: DashboardComponent,
-      },
-    ],
-  },
-];
 
 @NgModule({
   declarations: [
-    ShellComponent,
     FooterComponent,
     NavbarComponent,
     SidebarComponent,
     SpinnerComponent,
-    DashboardComponent,
     ContentAnimateDirective,
   ],
   imports: [
     CommonModule,
+    RouterModule,
     NgbModule,
-    RouterModule.forChild(routes),
+  ],
+  exports: [
+    FooterComponent,
+    NavbarComponent,
+    SidebarComponent,
+    SpinnerComponent,
+    ContentAnimateDirective,
   ],
 })
-export class ShellModule { }
+export class SharedModule { }

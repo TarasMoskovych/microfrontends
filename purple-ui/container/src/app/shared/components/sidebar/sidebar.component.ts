@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
-import { IUser } from 'src/app/modules/core/services/auth.service';
+import { IUser } from 'src/app/core/services/user.service';
 
 @Component({
   selector: 'app-sidebar',
