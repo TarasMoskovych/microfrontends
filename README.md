@@ -21,6 +21,7 @@ You can access the hosted application at the following URLs:
 - products: https://tarasmoskovych.github.io/microfrontends/ecomm/products/dist
 
 
+
 ## marketplace
 Multiframework project using ModuleFederation plugin.
 
@@ -41,3 +42,23 @@ You can access the hosted application at the following URLs:
 - dashboard: https://d30x72oakh2lkd.cloudfront.net/dashboard/latest/index.html
 - marketing: https://d30x72oakh2lkd.cloudfront.net/marketing/latest/index.html
 - product-management: https://d30x72oakh2lkd.cloudfront.net/product-management/latest/index.html
+
+
+
+## purple-ui
+Angular based project using ModuleFederation plugin and module federation tools.
+
+### Development server
+
+Run `npm install` from purple-ui folder to install all dependencies.
+Run `npm start`  from purple-ui folder for a dev server. Navigate to `http://localhost:8080` for the container.
+
+### Build
+
+Run `npm run build` to build the project.
+
+### Production
+
+You can access the hosted application at the following URLs:
+- container: https://d22qz1pbt23bxr.cloudfront.net
+- auth: https://d22qz1pbt23bxr.cloudfront.net/auth/latest/index.html
