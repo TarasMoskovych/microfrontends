@@ -37,7 +37,7 @@
           },
           "configurations": {
             "production": {
-              "deployUrl": "/container/latest/",
+              "baseHref": "/container/latest/",
               "budgets": [
                 {
                   "type": "initial",
