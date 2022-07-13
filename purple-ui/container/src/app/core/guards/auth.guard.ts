@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, CanLoad, Router } from '@angular/router';
-import { UserService } from '../services/user.service';
+import { map, Observable, take } from 'rxjs';
+import { IUser, UserService } from '../services/user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,21 +13,24 @@ export class AuthGuard implements CanActivate, CanLoad {
   ) {
   }
 
-  canActivate(): boolean {
+  canActivate(): Observable<boolean> {
     return this.canAccess();
   }
 
-  canLoad(): boolean {
+  canLoad(): Observable<boolean> {
     return this.canAccess();
   }
 
-  private canAccess(): boolean {
-    const hasPermission = !!this.userService.getUser();
+  private canAccess(): Observable<boolean> {
+    return this.userService.getUser().pipe(
+      map((user: IUser) => {
+        if (!user) {
+          this.router.navigateByUrl('/auth/signin');
+        }
 
-    if (!hasPermission) {
-      this.router.navigateByUrl('/auth/signin');
-    }
-
-    return hasPermission;
+        return !!user;
+      }),
+      take(1),
+    );
   }
 }
