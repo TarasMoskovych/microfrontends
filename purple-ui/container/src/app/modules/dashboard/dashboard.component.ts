@@ -1,4 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { ITodo, TodoService } from './services/todo.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,9 +9,16 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DashboardComponent implements OnInit {
-  constructor() { }
+  todos$!: Observable<ITodo[]>;
 
-  ngOnInit() {
+  constructor(private readonly todoService: TodoService) { }
+
+  ngOnInit(): void {
+    this.todos$ = this.todoService.getTodos();
+  }
+
+  onTodosChanged(todos: ITodo[]): void {
+    this.todoService.setTodos(todos);
   }
 
   date: Date = new Date();
@@ -39,35 +48,35 @@ export class DashboardComponent implements OnInit {
     responsive: true,
     legend: false,
     scales: {
-        yAxes: [{
-            ticks: {
-                display: false,
-                min: 0,
-                stepSize: 20,
-                max: 80
-            },
-            gridLines: {
-              drawBorder: false,
-              color: 'rgba(235,237,242,1)',
-              zeroLineColor: 'rgba(235,237,242,1)'
-            }
-        }],
-        xAxes: [{
-            gridLines: {
-              display:false,
-              drawBorder: false,
-              color: 'rgba(0,0,0,1)',
-              zeroLineColor: 'rgba(235,237,242,1)'
-            },
-            ticks: {
-                padding: 20,
-                fontColor: "#9c9fa6",
-                autoSkip: true,
-            },
-            categoryPercentage: 0.4,
-            barPercentage: 0.4
-        }]
-      }
+      yAxes: [{
+        ticks: {
+          display: false,
+          min: 0,
+          stepSize: 20,
+          max: 80
+        },
+        gridLines: {
+          drawBorder: false,
+          color: 'rgba(235,237,242,1)',
+          zeroLineColor: 'rgba(235,237,242,1)'
+        }
+      }],
+      xAxes: [{
+        gridLines: {
+          display: false,
+          drawBorder: false,
+          color: 'rgba(0,0,0,1)',
+          zeroLineColor: 'rgba(235,237,242,1)'
+        },
+        ticks: {
+          padding: 20,
+          fontColor: "#9c9fa6",
+          autoSkip: true,
+        },
+        categoryPercentage: 0.4,
+        barPercentage: 0.4
+      }]
+    }
   };
 
   visitSaleChartColors = [

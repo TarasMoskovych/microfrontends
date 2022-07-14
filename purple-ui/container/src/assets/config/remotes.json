@@ -1,0 +1,8 @@
+{
+  "todo": {
+    "remoteName": "todo",
+    "remoteEntry": "http://localhost:8082/remoteEntry.js",
+    "exposedModule": "./app",
+    "type": "script"
+  }
+}

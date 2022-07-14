@@ -1,0 +1,8 @@
+{
+  "todo": {
+    "remoteName": "todo",
+    "remoteEntry": "https://d22qz1pbt23bxr.cloudfront.net/todo/latest/remoteEntry.js",
+    "exposedModule": "./app",
+    "type": "script"
+  }
+}

@@ -382,7 +382,10 @@
     <div class="card">
       <div class="card-body">
         <h4 class="card-title">Todo</h4>
-        <!-- <app-todo></app-todo> -->
+        <app-todo-wrapper
+          [todos]="todos$ | async"
+          (todosChanged)="onTodosChanged($event)"
+        ></app-todo-wrapper>
       </div>
     </div>
   </div>
