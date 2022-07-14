@@ -24,7 +24,7 @@ module.exports = {
       name: 'todo',
       filename: 'remoteEntry.js',
       exposes: {
-        './app': './src/app.js',
+        './app': './src/app.js'
       },
     }),
   ],
