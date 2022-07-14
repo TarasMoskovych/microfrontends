@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://d22qz1pbt23bxr.cloudfront.net/container/latest/styles.086d6c82f4e3e34d.css">
+  <title>Todo</title>
+</head>
+<body>
+  <div class="container-scroller">
+    <div class="container-fluid page-body-wrapper full-page-wrapper">
+      <div class="main-panel w-100 main-panel-only">
+        <div class="content-wrapper">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">Todo</h4>
+              <todo-element></todo-element>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    window.addEventListener('load', () => {
+      const todoEl = document.querySelector('todo-element');
+
+      todoEl.setTodos([
+        { task: 'Meeting with Urban Team', completed: false },
+        { task: 'Duplicate a project for new customer', completed: false },
+        { task: 'Project meeting with CEO', completed: false },
+        { task: 'Follow up of team zilla', completed: true },
+        { task: 'Level up for Antony', completed: false },
+      ]);
+
+      todoEl.addEventListener('todos:changed', (e) => {
+        console.log('todos:changed', e.detail);
+      });
+    });
+  </script>
+</body>
+</html>

@@ -62,3 +62,4 @@ Run `npm run build` to build the project.
 You can access the hosted application at the following URLs:
 - container: https://d22qz1pbt23bxr.cloudfront.net
 - auth: https://d22qz1pbt23bxr.cloudfront.net/auth/latest/index.html
+- todo: https://d22qz1pbt23bxr.cloudfront.net/todo/latest/index.html
