@@ -11,7 +11,7 @@ const weatherService = new WeatherService();
 
 app.use(express.json({ extended: false }));
 app.use(cors({
-  origin: process.env.PRODUCTION ? process.env.ORIGIN : '*',
+  origin: process.env.PRODUCTION ? process.env.ORIGINS.split(' ') : '*',
 }));
 
 app.get('/api/echo', (req, res) => {
