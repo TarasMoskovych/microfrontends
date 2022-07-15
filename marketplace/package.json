@@ -5,7 +5,6 @@
   "main": "index.js",
   "scripts": {
     "start": "npm-run-all --parallel serve:container serve:auth serve:dashboard serve:marketing serve:product-management",
-    "server": "npm run dev --prefix ./server",
     "serve:container": "npm run start --prefix ./container",
     "serve:auth": "npm run start --prefix ./auth",
     "serve:dashboard": "npm run start --prefix ./dashboard",

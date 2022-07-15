@@ -2,10 +2,12 @@ const express = require('express');
 const { FsStrategy } = require('./strategies/fs.strategy');
 const { JsonStorageStrategy } = require('./strategies/jsonstorage.strategy');
 const { ProductsService } = require('./services/products.service');
+const { WeatherService } = require('./services/weather.service');
 const app = express();
 const PORT = process.env.PORT || 3001;
 const cors = require('cors');
 const productsService = new ProductsService(process.env.PRODUCTION ? new JsonStorageStrategy(process.env.DATABASE_URL) : new FsStrategy('./data/products.json'));
+const weatherService = new WeatherService();
 
 app.use(express.json({ extended: false }));
 app.use(cors({
@@ -15,6 +17,8 @@ app.use(cors({
 app.get('/api/echo', (req, res) => {
   res.send({ message: 'Hello, world!' })
 });
+
+app.post('/api/weather', weatherService.getWeather.bind(weatherService));
 
 app.get('/api/products', async(req, res) => {
   res.send(await productsService.getAll());
