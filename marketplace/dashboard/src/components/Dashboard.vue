@@ -42,7 +42,7 @@ export default {
   },
   methods: {
     getProducts() {
-      fetch(`${PRODUCT_SERVICE_URL}/api/products`)
+      fetch(`${MFE_SERVICE_URL}/api/products`)
         .then((response) => response.json())
         .then(products => this.products = products)
         .catch(() => this.products = []);

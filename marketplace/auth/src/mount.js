@@ -21,6 +21,6 @@ export const mount = (el, { onSignIn, onNavigate, defaultHistory, initialPath, s
       if (pathname !== nextPath) {
         history.push(nextPath);
       }
-    }
+    },
   };
 };

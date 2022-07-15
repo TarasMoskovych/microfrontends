@@ -12,7 +12,7 @@ const MarketingApp = lazy(() => import('./components/MarketingApp'));
 const ProductManagementApp = lazy(() => import('./components/ProductManagementApp'));
 
 const generateClassName = createGenerateClassName({
-  productionPrefix: 'root',
+  productionPrefix: 'root'
 });
 
 export default () => {

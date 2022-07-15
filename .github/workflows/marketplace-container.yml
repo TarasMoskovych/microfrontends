@@ -27,6 +27,9 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
+      - name: Remove folder
+        run:
+          aws s3 rm s3://${{ secrets.AWS_S3_BUCKET_NAME }}/ --recursive --exclude "*" --include "container/latest/*"
       - name: Copy files to the s3 website content bucket
         run:
           aws s3 sync dist s3://${{ secrets.AWS_S3_BUCKET_NAME }}/container/latest

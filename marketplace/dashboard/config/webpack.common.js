@@ -40,7 +40,7 @@ module.exports = {
     ],
   },
   plugins: [
-    new DefinePlugin({ PRODUCT_SERVICE_URL: JSON.stringify(process.env.PRODUCT_SERVICE_URL || 'http://localhost:3001') }),
+    new DefinePlugin({ MFE_SERVICE_URL: JSON.stringify(process.env.MFE_SERVICE_URL || 'http://localhost:3001') }),
     new HtmlWebpackPlugin({
       template: './public/index.html',
     }),

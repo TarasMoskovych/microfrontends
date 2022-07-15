@@ -10,7 +10,7 @@ const generateClassName = createGenerateClassName({
 });
 
 const getProducts = () => {
-  return fetch(`${PRODUCT_SERVICE_URL}/api/products`).then(res => res.json());
+  return fetch(`${MFE_SERVICE_URL}/api/products`).then(res => res.json());
 };
 
 export default ({ history, isSignedIn }) => {
