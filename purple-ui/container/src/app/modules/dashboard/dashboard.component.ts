@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { IUser, UserService } from 'src/app/core/services/user.service';
 import { ITodo, TodoService } from './services/todo.service';
 
 @Component({
@@ -10,11 +11,16 @@ import { ITodo, TodoService } from './services/todo.service';
 })
 export class DashboardComponent implements OnInit {
   todos$!: Observable<ITodo[]>;
+  user$!: Observable<IUser>;
 
-  constructor(private readonly todoService: TodoService) { }
+  constructor(
+    private readonly todoService: TodoService,
+    private readonly userService: UserService,
+  ) { }
 
   ngOnInit(): void {
     this.todos$ = this.todoService.getTodos();
+    this.user$ = this.userService.getUser();
   }
 
   onTodosChanged(todos: ITodo[]): void {

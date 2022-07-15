@@ -4,5 +4,11 @@
     "remoteEntry": "https://d22qz1pbt23bxr.cloudfront.net/todo/latest/remoteEntry.js",
     "exposedModule": "./app",
     "type": "script"
+  },
+  "weather": {
+    "remoteName": "weather",
+    "remoteEntry": "https://d22qz1pbt23bxr.cloudfront.net/weather/latest/remoteEntry.js",
+    "exposedModule": "./mount",
+    "type": "script"
   }
 }

@@ -209,8 +209,11 @@
 </div>
 <div class="row">
   <div class="col-md-5 grid-margin stretch-card">
-    <div class="card">
-        <!-- <ngb-datepicker #dp [(ngModel)]="date" (navigate)="date = $event.next" class="w-100 border-0"></ngb-datepicker> -->
+    <div class="card" [style.background]="'inherit'">
+      <app-weather-wrapper
+        *ngIf="user$ | async as user"
+        [user]="user"
+      ></app-weather-wrapper>
     </div>
   </div>
   <div class="col-md-7 grid-margin stretch-card">

@@ -4,5 +4,11 @@
     "remoteEntry": "http://localhost:8082/remoteEntry.js",
     "exposedModule": "./app",
     "type": "script"
+  },
+  "weather": {
+    "remoteName": "weather",
+    "remoteEntry": "http://localhost:8083/remoteEntry.js",
+    "exposedModule": "./mount",
+    "type": "script"
   }
 }
