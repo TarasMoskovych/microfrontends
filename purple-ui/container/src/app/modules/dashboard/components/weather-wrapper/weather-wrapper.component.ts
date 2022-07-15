@@ -11,10 +11,24 @@ export class WeatherWrapperComponent implements OnInit {
   @Input() user!: IUser;
   @ViewChild('weather') weatherEl!: ElementRef;
 
+  get coords(): Promise<{ latitude: number, longitude: number }> {
+    const { latitude, longitude } = this.user.location.coordinates;
+
+    return new Promise(resolve => {
+      navigator.geolocation.getCurrentPosition(
+        ({ coords }: GeolocationPosition) => resolve({ latitude: coords.latitude, longitude: coords.longitude }),
+        () => {
+          console.warn('Using user geolocation');
+          resolve({ latitude: Number.parseFloat(latitude), longitude: Number.parseFloat(longitude) });
+        },
+      );
+    });
+  }
+
   async ngOnInit(): Promise<void> {
     const { weather } = getManifest();
-    const { latitude, longitude } = this.user.location.coordinates;
     const { mount } = await loadRemoteModule(weather as LoadRemoteModuleOptions);
+    const { latitude, longitude } = await this.coords;
 
     mount(this.weatherEl.nativeElement, { latitude, longitude });
   }
