@@ -4,7 +4,7 @@ import { fromFetch } from 'rxjs/fetch';
 declare const MFE_SERVICE_URL: string;
 
 export class WeatherService {
-  getWeather(geolocation: IGeolocation): Observable<any> {
+  getWeather(geolocation: IGeolocation): Observable<IWeather> {
     return fromFetch(`${MFE_SERVICE_URL}/api/weather`, {
       selector: response => response.json(),
       method: 'post',
