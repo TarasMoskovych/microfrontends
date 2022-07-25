@@ -22,15 +22,7 @@ const dayLayout = (weather: IWeather, date: Date) => (
   <path d="M766.4 805C713.8 818.1 659.2 823 606.6 823C604.4 823 602.2 823 600 823C651.8 835.4 710.6 845.5 766.4 846.2V805" fill="url(#paint7_linear_5_473)"/>
   <path d="M766.4 774.3H444C444 774.3 512 802 600 823C602.2 823 604.4 823 606.6 823C659.2 823 713.8 818 766.4 805V774.3" fill="url(#paint8_linear_5_473)"/>
 
-
-  ${weather ?
-    `<text fill="#FFFDFD" xml:space="preserve" style="white-space: pre" font-family="inherit" font-size="22.7643" letter-spacing="0em"><tspan x="499.622" y="164.64">${formatDate(date)}</tspan></text>
-    <text fill="#FFFDFD" xml:space="preserve" style="white-space: pre" font-family="inherit" font-size="36.9503" letter-spacing="0em"><tspan x="550.015" y="130.849">${weather.name}</tspan></text>
-    <path d="M529.4 101.7C522.5 101.7 518.1 106.6 518.1 115.8C518.1 125 527.1 134.9 529.4 135.1C531.7 134.9 540.7 125 540.7 115.8C540.7 106.6 536.3 101.7 529.4 101.7ZM529.4 118.9C525.7 118.9 522.7 115.9 522.7 112.2C522.7 108.5 525.7 105.5 529.4 105.5C533.1 105.5 536.1 108.5 536.1 112.2C536.1 115.9 533 118.9 529.4 118.9Z" fill="#FFFDFD"/>
-    <text fill="#FFFDFD" xml:space="preserve" style="white-space: pre" font-family="inherit" font-size="129.34" letter-spacing="0em"><tspan x="474.328" y="276.87">${formatTemp(weather)}</tspan></text>
-    <path d="M645.2 218C635.7 218 627.9 210.3 627.9 200.7C627.9 191.1 635.6 183.4 645.2 183.4C654.8 183.4 662.5 191.1 662.5 200.7C662.5 210.3 654.8 218 645.2 218ZM645.2 190.4C639.5 190.4 634.9 195 634.9 200.7C634.9 206.4 639.5 211 645.2 211C650.9 211 655.5 206.4 655.5 200.7C655.5 195 650.9 190.4 645.2 190.4Z" fill="#FFFDFD"/>
-    <text fill="#FFFDFD" xml:space="preserve" style="white-space: pre" font-family="inherit" font-size="50.7951" letter-spacing="0em"><tspan x="668.251" y="217.931">C</tspan></text>`
-  : ''}
+  ${getWeatherInfo(weather, date)}
 
   <path d="M391.2 800.7C342.7 800.7 298.9 802.1 267.7 804.4C298.9 806.7 342.7 808.1 391.2 808.1C406.9 808.1 422 808 436.5 807.7C423.7 805.5 411.5 803.2 400 800.8C397.1 800.8 394.1 800.7 391.2 800.7Z" fill="url(#paint9_linear_5_473)"/>
   <path d="M400 800.8C411.5 803.2 423.7 805.5 436.5 807.7C466.7 807.1 493.7 806 514.8 804.5C485.4 802.3 445 800.9 400 800.8Z" fill="url(#paint10_linear_5_473)"/>
@@ -44,12 +36,6 @@ const dayLayout = (weather: IWeather, date: Date) => (
   <path d="M220.6 734.1L190.6 624.1C188.9 617.7 179.8 617.7 178.1 624.1L148.1 734.1C143.8 750 155.7 765.6 172.2 765.6H177.7V811.2H191.2V765.6H196.7C213 765.6 225 750 220.6 734.1Z" fill="url(#paint18_linear_5_473)"/>
   <path d="M255 1054.9C255 1054.9 411.9 938.3 766.4 900.3V1054.9H255Z" fill="url(#paint19_linear_5_473)"/>
   <path d="M729.3 833.7L682.7 662.8C680 652.9 665.9 652.9 663.2 662.8L616.6 833.7C609.9 858.4 628.4 882.7 654 882.7H662.5V953.6H683.4V882.7H691.9C717.5 882.6 736 858.3 729.3 833.7Z" fill="url(#paint20_linear_5_473)"/>
-
-  ${weather ?
-    `<text fill="#FFFDFD" xml:space="preserve" style="white-space: pre" font-family="inherit" font-size="47.8981" letter-spacing="0em"><tspan x="113.36" y="270.037">${weather.weather[0].main}</tspan></text>
-    ${getIcon(weather)}`
-  : ''}
-
   <path d="M739.5 1160H27.8C25.8 1160 24.1 1158.3 24.1 1156.3V1156C24.1 1154 25.8 1152.3 27.8 1152.3H739.4C741.4 1152.3 743.1 1154 743.1 1156V1156.3C743.2 1158.4 741.5 1160 739.5 1160Z" fill="#F2EBEB"/>
   <path d="M739.5 1259.3H27.8C25.8 1259.3 24.1 1257.6 24.1 1255.6V1255.3C24.1 1253.3 25.8 1251.6 27.8 1251.6H739.4C741.4 1251.6 743.1 1253.3 743.1 1255.3V1255.6C743.2 1257.6 741.5 1259.3 739.5 1259.3Z" fill="#F2EBEB"/>
 
@@ -169,16 +155,7 @@ const nightLayout = (weather: IWeather, date: Date) => (
   <path d="M765.5 774.3H443.1H765.5V846.2V805V774.3Z" fill="#BFD6E2"/>
   <path d="M765.5 774.3H443.1C443.1 774.3 511.1 802 599.1 823C650.9 835.4 709.7 845.5 765.5 846.2V774.3Z" fill="#74C7CF"/>
 
-  ${weather ?
-  `<text fill="#FFFDFD" xml:space="preserve" style="white-space: pre" font-family="inherit" font-size="22.7643" letter-spacing="0em"><tspan x="498.677" y="164.64">${formatDate(date)}</tspan></text>
-  <text fill="#FFFDFD" xml:space="preserve" style="white-space: pre" font-family="inherit" font-size="36.9503" letter-spacing="0em"><tspan x="549.071" y="130.849">${weather.name}</tspan></text>
-  <path d="M528.4 101.7C521.5 101.7 517.1 106.6 517.1 115.8C517.1 125 526.1 134.9 528.4 135.1C530.7 134.9 539.7 125 539.7 115.8C539.7 106.6 535.3 101.7 528.4 101.7ZM528.4 118.9C524.7 118.9 521.7 115.9 521.7 112.2C521.7 108.5 524.7 105.5 528.4 105.5C532.1 105.5 535.1 108.5 535.1 112.2C535.1 115.9 532.1 118.9 528.4 118.9Z" fill="#FFFDFD"/>
-  <text fill="#FFFDFD" xml:space="preserve" style="white-space: pre" font-family="inherit" font-size="129.34" letter-spacing="0em"><tspan x="473.383" y="276.87">${formatTemp(weather)}</tspan></text>
-  <path d="M644.3 218C634.8 218 627 210.3 627 200.7C627 191.1 634.7 183.4 644.3 183.4C653.9 183.4 661.6 191.1 661.6 200.7C661.6 210.3 653.8 218 644.3 218ZM644.3 190.4C638.6 190.4 634 195 634 200.7C634 206.4 638.6 211 644.3 211C650 211 654.6 206.4 654.6 200.7C654.6 195 650 190.4 644.3 190.4Z" fill="#FFFDFD"/>
-  <text fill="#FFFDFD" xml:space="preserve" style="white-space: pre" font-family="inherit" font-size="50.7951" letter-spacing="0em"><tspan x="667.306" y="217.931">C</tspan></text>
-  <text fill="#FFFDFD" xml:space="preserve" style="white-space: pre" font-family="inherit" font-size="47.8981" letter-spacing="0em"><tspan x="112.416" y="270.037">${weather.weather[0].main}</tspan></text>
-  ${getIcon(weather)}`
-  : ''}
+  ${getWeatherInfo(weather, date)}
 
   <path d="M738.5 1160H26.9C24.9 1160 23.2 1158.3 23.2 1156.3V1156C23.2 1154 24.9 1152.3 26.9 1152.3H738.5C740.5 1152.3 742.2 1154 742.2 1156V1156.3C742.2 1158.4 740.6 1160 738.5 1160Z" fill="#E9EBF2"/>
   <path d="M738.5 1259.3H26.9C24.9 1259.3 23.2 1257.6 23.2 1255.6V1255.3C23.2 1253.3 24.9 1251.6 26.9 1251.6H738.5C740.5 1251.6 742.2 1253.3 742.2 1255.3V1255.6C742.2 1257.6 740.6 1259.3 738.5 1259.3Z" fill="#E9EBF2"/>
@@ -299,4 +276,42 @@ const getIcon = ({ weather }: IWeather): string => {
     default:
       return '';
   }
-}
+};
+
+const getWeatherInfo = (weather: IWeather, date: Date) => {
+  if (!weather) {
+    return '';
+  }
+
+  const temp = formatTemp(weather);
+  const weatherName = weather.name.slice(0, 20);
+  const offsetX = nameOffset[weatherName.length] || 0;
+
+  return `
+    <g transform="translate(${offsetX}, 0)">
+      <text fill="#FFFDFD" xml:space="preserve" style="white-space: pre" font-family="inherit" font-size="36.9503" letter-spacing="0em"><tspan x="549.071" y="130.849">${weatherName}</tspan></text>
+      <path d="M528.4 101.7C521.5 101.7 517.1 106.6 517.1 115.8C517.1 125 526.1 134.9 528.4 135.1C530.7 134.9 539.7 125 539.7 115.8C539.7 106.6 535.3 101.7 528.4 101.7ZM528.4 118.9C524.7 118.9 521.7 115.9 521.7 112.2C521.7 108.5 524.7 105.5 528.4 105.5C532.1 105.5 535.1 108.5 535.1 112.2C535.1 115.9 532.1 118.9 528.4 118.9Z" fill="#FFFDFD"/>
+    </g>
+    <text fill="#FFFDFD" xml:space="preserve" style="white-space: pre" font-family="inherit" font-size="22.7643" letter-spacing="0em"><tspan x="498.677" y="164.64">${formatDate(date)}</tspan></text>
+    <text fill="#FFFDFD" xml:space="preserve" style="white-space: pre" font-family="inherit" font-size="129.34" letter-spacing="0em"><tspan x="${temp < 0 ? '433' : '473'}" y="276.87">${temp}</tspan></text>
+    <path d="M644.3 218C634.8 218 627 210.3 627 200.7C627 191.1 634.7 183.4 644.3 183.4C653.9 183.4 661.6 191.1 661.6 200.7C661.6 210.3 653.8 218 644.3 218ZM644.3 190.4C638.6 190.4 634 195 634 200.7C634 206.4 638.6 211 644.3 211C650 211 654.6 206.4 654.6 200.7C654.6 195 650 190.4 644.3 190.4Z" fill="#FFFDFD"/>
+    <text fill="#FFFDFD" xml:space="preserve" style="white-space: pre" font-family="inherit" font-size="50.7951" letter-spacing="0em"><tspan x="667.306" y="217.931">C</tspan></text>
+    <text fill="#FFFDFD" xml:space="preserve" style="white-space: pre" font-family="inherit" font-size="47.8981" letter-spacing="0em"><tspan x="112.416" y="270.037">${weather.weather[0].main}</tspan></text>
+    ${getIcon(weather)}
+  `;
+};
+
+const nameOffset: any = {
+  9: -30,
+  10: -50,
+  11: -55,
+  12: -60,
+  13: -80,
+  14: -100,
+  15: -120,
+  16: -140,
+  17: -160,
+  18: -180,
+  19: -200,
+  20: -220,
+};
