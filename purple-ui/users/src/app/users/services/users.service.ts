@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ChartDataSets } from 'chart.js';
 import { BehaviorSubject, exhaustMap, map, Observable, OperatorFunction, pluck, tap } from 'rxjs';
+import { environment } from './../../../environments/environment';
 
 const DEFAULT_SORT: ISort = {
   asc: true,
@@ -17,7 +18,6 @@ const INITIAL_PAGINATION = {
 
 @Injectable()
 export class UsersService {
-  public readonly usersApi = 'https://randomuser.me/api';
   public readonly countryUrl = 'https://countryflagsapi.com/png';
   public readonly columns = ['name', 'gender', 'age', 'email', 'country', 'phone'];
   public readonly perAgeLabels = ['Under 18', '19-25', '26-35', '36-45', '46-55', '56-65', '66 and over'];
@@ -43,7 +43,7 @@ export class UsersService {
   }
 
   getUsers(): Observable<IUser[]> {
-    return this.http.get(`${this.usersApi}?results=150`).pipe(
+    return this.http.get(`${environment.proxyUrl}/api/users`).pipe(
       pluck('results') as OperatorFunction<Object, IUser[]>,
       map((users: IUser[]) => users.map((user: IUser) => ({ ...user, name: { ...user.name, full: `${user.name.first} ${user.name.last}` } }))),
       tap((users: IUser[]) => this.initData(users)),

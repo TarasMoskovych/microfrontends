@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  proxyUrl: 'https://mfe-service.vercel.app',
 };
