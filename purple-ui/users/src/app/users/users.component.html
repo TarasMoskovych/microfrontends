@@ -1,0 +1,155 @@
+<div *ngIf="users$ | async as users; else loader" class="row users">
+  <div class="col-12 grid-margin">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Users</h4>
+        <div class="table-responsive" *ngIf="users">
+          <table class="table">
+            <thead>
+              <tr *ngIf="sort$ | async as sort">
+                <th
+                  *ngFor="let column of usersService.columns"
+                  [class.active]="column === sort.prop"
+                  (click)="onSort({ asc: column === sort.prop ? !sort.asc : true, prop: column })"
+                >
+                  {{ column | titlecase }}
+                  <i class="mdi mdi-arrow-up" [class.down]="!sort.asc && column === sort.prop"></i>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let user of users">
+                <td>
+                  <img [src]="user.picture.thumbnail" class="mr-2" alt="image">
+                  {{ user.name.full }}
+                </td>
+                <td>
+                  {{ user.gender | titlecase }}
+                </td>
+                <td>
+                  {{ user.dob.age }}
+                </td>
+                <td>
+                  {{ user.email }}
+                </td>
+                <td *ngIf="user.location.country as country">
+                  <img [src]="countryUrl + '/' + country" class="mr-2" alt="image">
+                  {{ country }}
+                </td>
+                <td>
+                  {{ user.phone }}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div *ngIf="pagination$ | async as pagination" class="d-flex flex-wrap justify-content-between align-items-center mt-5">
+          <div *ngIf="pagination.pages.length" class="">
+            <ul class="d-flex list-unstyled m-0 align-items-center">
+              <li class="mr-2" [class.d-md-none]="pagination.currentPage < 2">
+                <button
+                  class="btn btn-outline-primary btn-icon"
+                  (click)="onGoToPreviousPage()"
+                  [disabled]="pagination.currentPage < 2"
+                >
+                  <i class="mdi mdi-arrow-left"></i>
+                </button>
+              </li>
+              <li class="border-0 mx-1 d-md-none">{{ pagination.currentPage }}</li>
+              <li
+                *ngFor="let page of pagination.pages; let idx = index"
+                [class.ml-1]="idx !== 0"
+                class="border-0 d-none d-md-inline"
+              >
+                <button
+                  *ngIf="page !== ''; else empty"
+                  class="btn btn-outline-primary btn-icon"
+                  [class.btn-primary]="pagination.currentPage === page"
+                  (click)="onGoToPage(page)"
+                >
+                  {{ page }}
+                </button>
+                <ng-template #empty>
+                  <span>...</span>
+                </ng-template>
+              </li>
+              <li class="ml-2 border-0" [class.d-md-none]="pagination.currentPage >= pagination.totalPages">
+                <button
+                  class="btn btn-outline-primary btn-icon"
+                  (click)="onGoToNextPage()"
+                  [disabled]="pagination.currentPage >= pagination.totalPages"
+                >
+                  <i class="mdi mdi-arrow-right"></i>
+                </button>
+              </li>
+            </ul>
+          </div>
+          <div class="dropdown ml-md-auto">
+            <div ngbDropdown>
+              <button class="btn btn-gradient-primary" type="button" id="itemsPerPage" ngbDropdownToggle>
+                Per page: {{ pagination.itemsPerPage }}
+              </button>
+              <div ngbDropdownMenu aria-labelledby="itemsPerPage" class="dropdown-menu">
+                <a
+                  *ngFor="let item of usersService.numberOfItems"
+                  class="dropdown-item"
+                  [class.active]="item === pagination.itemsPerPage"
+                  (click)="onItemsPerPageChange(item)"
+                >
+                  {{ item }}
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-5 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Countries</h4>
+        <div class="rounded-legend legend-vertical legend-bottom-left pt-3">
+          <ul class="countries-list" [style.grid-template-rows]="contriesRows">
+            <li *ngFor="let country of usersService.byCountries | keyvalue" class="d-flex justify-content-between">
+              <span>
+                <img [src]="countryUrl + '/' + country.key" class="mr-2" alt="image" [style.maxHeight]="'15px'">
+                {{ country.key }}
+              </span>
+              <span class="mr-4">{{ country.value }}</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-7 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Ages</h4>
+        <canvas
+          baseChart
+          [chartType]="'doughnut'"
+          [datasets]="usersService.chartData"
+          [labels]="usersService.perAgeLabels"
+          [options]="chartOptions"
+        ></canvas>
+        <div class="rounded-legend legend-vertical legend-bottom-left pt-3">
+          <ul>
+            <li *ngFor="let label of usersService.perAgeLabels">
+              <span>{{ label }}</span>
+              <span class="float-right">{{ usersService.byAges[label] }}</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #loader>
+  <div class="main-spinner-wrapper" [style.height]="'100%'">
+    <div class="donut"></div>
+  </div>
+</ng-template>

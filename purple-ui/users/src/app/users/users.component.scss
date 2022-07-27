@@ -1,0 +1,45 @@
+.users {
+  table {
+    thead {
+      th {
+        cursor: pointer;
+
+        &.active,
+        &:hover {
+          i {
+            opacity: 1;
+          }
+        }
+
+        &.active {
+          i {
+            color: #b66dff;
+          }
+        }
+
+        i {
+          opacity: 0;
+          transition: .3s;
+
+          &::before {
+            transition: .3s;
+          }
+
+          &.down {
+            &::before {
+              transform: rotate(180deg);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .countries-list {
+    align-items: baseline;
+    display: grid;
+    column-gap: 15px;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-flow: column;
+  }
+}
