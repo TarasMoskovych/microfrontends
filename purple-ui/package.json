@@ -4,16 +4,18 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npm-run-all --parallel serve:container serve:auth serve:todo serve:weather",
+    "start": "npm-run-all --parallel serve:container serve:auth serve:todo serve:weather serve:users",
     "serve:container": "npm run start --prefix ./container",
     "serve:auth": "npm run start --prefix ./auth",
     "serve:todo": "npm run start --prefix ./todo",
     "serve:weather": "npm run start --prefix ./weather",
+    "serve:users": "npm run start --prefix ./users",
     "install:container": "cd ./container && npm i",
     "install:auth": "cd ./auth && npm i",
     "install:todo": "cd ./todo && npm i",
     "install:weather": "cd ./weather && npm i",
-    "postinstall": "npm-run-all --parallel install:container install:auth install:todo install:weather"
+    "install:users": "cd ./weather && npm i",
+    "postinstall": "npm-run-all --parallel install:container install:auth install:todo install:weather install:users"
   },
   "keywords": [],
   "author": "",

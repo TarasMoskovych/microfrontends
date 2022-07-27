@@ -8,38 +8,42 @@ sharedMappings.register(
   path.join(__dirname, 'tsconfig.json'),
   [/* mapped paths to share */]);
 
-module.exports = ({ publicPath, remotes }) => ({
+module.exports = ({ publicPath }) => ({
   output: {
-    uniqueName: 'purpleUi',
+    uniqueName: 'users',
     publicPath,
-    scriptType: 'text/javascript',
   },
   optimization: {
-    runtimeChunk: false
+    runtimeChunk: false,
   },
   resolve: {
     alias: {
       ...sharedMappings.getAliases(),
-    }
+    },
   },
   experiments: {
-    outputModule: true
+    outputModule: true,
   },
   plugins: [
     new ModuleFederationPlugin({
       library: { type: 'module' },
-      remotes,
+      name: 'users',
+      filename: 'remoteEntry.js',
+      exposes: {
+        './UsersComponent': './src/app/users/users.component.ts',
+      },
       shared: share({
         '@angular/core': { singleton: true, strictVersion: true, requiredVersion: 'auto' },
         '@angular/common': { singleton: true, strictVersion: true, requiredVersion: 'auto' },
         '@angular/common/http': { singleton: true, strictVersion: true, requiredVersion: 'auto' },
         '@angular/router': { singleton: true, strictVersion: true, requiredVersion: 'auto' },
+        '@ng-bootstrap/ng-bootstrap': { singleton: true, strictVersion: true, requiredVersion: 'auto' },
         'chart.js': { singleton: true, strictVersion: true, requiredVersion: 'auto' },
         'ng2-charts': { singleton: true, strictVersion: true, requiredVersion: 'auto' },
         'rxjs': { singleton: true, strictVersion: true, requiredVersion: 'auto' },
-        ...sharedMappings.getDescriptors()
+        ...sharedMappings.getDescriptors(),
       })
     }),
-    sharedMappings.getPlugin()
+    sharedMappings.getPlugin(),
   ],
 });

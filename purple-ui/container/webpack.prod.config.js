@@ -4,5 +4,6 @@ module.exports = require('./webpack.common')({
   publicPath: '/container/latest/',
   remotes: {
     'auth': `${domain}/auth/latest/remoteEntry.js`,
+    'users': `${domain}/users/latest/remoteEntry.js`,
   },
 });
