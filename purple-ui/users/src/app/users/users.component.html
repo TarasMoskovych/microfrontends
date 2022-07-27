@@ -111,7 +111,7 @@
       <div class="card-body">
         <h4 class="card-title">Countries</h4>
         <div class="rounded-legend legend-vertical legend-bottom-left pt-3">
-          <ul class="countries-list" [style.grid-template-rows]="contriesRows">
+          <ul class="countries-list" [style.grid-template-rows]="countriesRows">
             <li *ngFor="let country of usersService.byCountries | keyvalue" class="d-flex justify-content-between">
               <span>
                 <img [src]="countryUrl + '/' + country.key" class="mr-2" alt="image" [style.maxHeight]="'15px'">

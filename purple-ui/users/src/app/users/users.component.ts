@@ -40,7 +40,7 @@ export class UsersComponent implements OnInit {
     return this.usersService.countryUrl;
   }
 
-  get contriesRows(): string {
+  get countriesRows(): string {
     return `repeat(${Math.ceil(Object.keys(this.usersService.byCountries).length / 2)}, 1fr)`;
   }
 
