@@ -4,7 +4,14 @@ import { IUser } from 'src/app/core/services/user.service';
 
 @Component({
   selector: 'app-weather-wrapper',
-  template: '<div #weather></div>',
+  template: '<div #weather class="weather"></div>',
+  styles: [`
+    .weather ::ng-deep svg {
+      @media screen and (max-width: 768px) {
+        max-height: 500px;
+      }
+    }
+  `],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class WeatherWrapperComponent implements OnInit {

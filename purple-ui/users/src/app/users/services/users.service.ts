@@ -11,7 +11,7 @@ const DEFAULT_SORT: ISort = {
 
 const INITIAL_PAGINATION = {
   currentPage: 1,
-  itemsPerPage: 10,
+  itemsPerPage: 5,
   pages: [],
   totalPages: 0,
 };
@@ -21,7 +21,7 @@ export class UsersService {
   public readonly countryUrl = 'https://countryflagsapi.com/png';
   public readonly columns = ['name', 'gender', 'age', 'email', 'country', 'phone'];
   public readonly perAgeLabels = ['Under 18', '19-25', '26-35', '36-45', '46-55', '56-65', '66 and over'];
-  public readonly numberOfItems = [8, 10, 25, 50, 'ALL'];
+  public readonly numberOfItems = [5, 10, 25, 50, 'ALL'];
   public byCountries: IStatistic = {};
   public byAges: IStatistic = {};
   public chartData!: ChartDataSets[];
