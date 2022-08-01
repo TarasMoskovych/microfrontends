@@ -25,5 +25,19 @@
         <i class="mdi mdi-account-multiple menu-icon"></i>
       </a>
     </li>
+    <li *ngIf="remoteRoutes.length" class="nav-item" [ngClass]="{'active': frameworksActive }">
+      <a class="nav-link" (click)="remotesCollapsed = !remotesCollapsed" [attr.aria-expanded]="remotesCollapsed" aria-controls="ui-basic">
+        <span class="menu-title">Frameworks</span>
+        <i class="menu-arrow"></i>
+        <i class="mdi mdi-crosshairs-gps menu-icon"></i>
+      </a>
+      <div class="collapse" id="ui-basic" [ngbCollapse]="!remotesCollapsed">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item" *ngFor="let remote of remoteRoutes">
+            <a class="nav-link" [routerLink]="'frameworks/' + remote.path" routerLinkActive="active">{{ remote.title }}</a>
+          </li>
+        </ul>
+      </div>
+    </li>
   </ul>
 </nav>

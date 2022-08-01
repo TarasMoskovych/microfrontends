@@ -10,5 +10,49 @@
     "remoteEntry": "http://localhost:8083/remoteEntry.js",
     "exposedModule": "./mount",
     "type": "script"
+  },
+  "routes": {
+    "angular": {
+      "title": "Angular",
+      "path": "angular",
+      "load": "loadComponent",
+      "type": "module",
+      "data": {
+        "remoteName": "angular",
+        "remoteEntry": "http://localhost:8085/remoteEntry.js",
+        "remoteApp": "http://localhost:8085",
+        "exposedModule": "./remoteEntry",
+        "entryModule": "AppComponent",
+        "elementName": null
+      }
+    },
+    "react": {
+      "title": "React",
+      "path": "react",
+      "load": null,
+      "type": "script",
+      "data": {
+        "remoteName": "react",
+        "remoteEntry": "http://localhost:8086/remoteEntry.js",
+        "remoteApp": "http://localhost:8086",
+        "exposedModule": "./remoteEntry",
+        "entryModule": null,
+        "elementName": "react-element"
+      }
+    },
+    "vue": {
+      "title": "Vue",
+      "path": "vue",
+      "load": null,
+      "type": "script",
+      "data": {
+        "remoteName": "vue",
+        "remoteEntry": "http://localhost:8087/remoteEntry.js",
+        "remoteApp": "http://localhost:8087",
+        "exposedModule": "./remoteEntry",
+        "entryModule": null,
+        "elementName": "vue-element"
+      }
+    }
   }
 }

@@ -65,3 +65,6 @@ You can access the hosted application at the following URLs:
 - todo: https://d22qz1pbt23bxr.cloudfront.net/todo/latest/index.html
 - weather: https://d22qz1pbt23bxr.cloudfront.net/weather/latest/index.html
 - users: https://d22qz1pbt23bxr.cloudfront.net/users/latest/index.html
+- frameworks/angular: https://d22qz1pbt23bxr.cloudfront.net/frameworks/angular/latest/index.html
+- frameworks/react: https://d22qz1pbt23bxr.cloudfront.net/frameworks/react/latest/index.html
+- frameworks/vue: https://d22qz1pbt23bxr.cloudfront.net/frameworks/vue/latest/index.html

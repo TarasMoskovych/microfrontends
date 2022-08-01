@@ -10,5 +10,49 @@
     "remoteEntry": "https://d22qz1pbt23bxr.cloudfront.net/weather/latest/remoteEntry.js",
     "exposedModule": "./mount",
     "type": "script"
+  },
+  "routes": {
+    "angular": {
+      "title": "Angular",
+      "path": "angular",
+      "load": "loadComponent",
+      "type": "module",
+      "data": {
+        "remoteName": "angular",
+        "remoteEntry": "https://d22qz1pbt23bxr.cloudfront.net/frameworks/angular/latest/remoteEntry.js",
+        "remoteApp": "https://d22qz1pbt23bxr.cloudfront.net/frameworks/angular/latest/index.html",
+        "exposedModule": "./remoteEntry",
+        "entryModule": "AppComponent",
+        "elementName": null
+      }
+    },
+    "react": {
+      "title": "React",
+      "path": "react",
+      "load": null,
+      "type": "script",
+      "data": {
+        "remoteName": "react",
+        "remoteEntry": "https://d22qz1pbt23bxr.cloudfront.net/frameworks/react/latest/remoteEntry.js",
+        "remoteApp": "https://d22qz1pbt23bxr.cloudfront.net/frameworks/react/latest/index.html",
+        "exposedModule": "./remoteEntry",
+        "entryModule": null,
+        "elementName": "react-element"
+      }
+    },
+    "vue": {
+      "title": "Vue",
+      "path": "vue",
+      "load": null,
+      "type": "script",
+      "data": {
+        "remoteName": "vue",
+        "remoteEntry": "https://d22qz1pbt23bxr.cloudfront.net/frameworks/vue/latest/remoteEntry.js",
+        "remoteApp": "https://d22qz1pbt23bxr.cloudfront.net/frameworks/vue/latest/index.html",
+        "exposedModule": "./remoteEntry",
+        "entryModule": null,
+        "elementName": "vue-element"
+      }
+    }
   }
 }

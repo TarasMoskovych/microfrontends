@@ -1,0 +1,13 @@
+<div class="card">
+  <div class="card-body">
+    <div class="d-flex flex-wrap justify-content-between">
+      <h4 *ngIf="data$ | async as data" class="card-title">
+        Remote App URL: <a [href]="data.remoteApp" target="_blank">{{ data.remoteName }}</a>
+      </h4>
+      <div class="w-100">
+        <hr>
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</div>
