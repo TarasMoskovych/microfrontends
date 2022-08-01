@@ -11,7 +11,7 @@ node_modules*
 
 # dist
 marketplace/*/dist
-purple-ui/*/dist
+purple-ui/**/dist
 
 # profiling files
 chrome-profiler-events*.json
