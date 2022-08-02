@@ -12,16 +12,20 @@
                   [class.active]="column === sort.prop"
                   (click)="onSort({ asc: column === sort.prop ? !sort.asc : true, prop: column })"
                 >
-                  {{ column | titlecase }}
-                  <i class="mdi mdi-arrow-up" [class.down]="!sort.asc && column === sort.prop"></i>
+                  <div class="d-flex">
+                    {{ column | titlecase }}
+                    <i class="mdi mdi-arrow-up" [class.down]="!sort.asc && column === sort.prop"></i>
+                  </div>
                 </th>
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let user of users">
                 <td>
-                  <img [src]="user.picture.thumbnail" class="mr-2" alt="image">
-                  {{ user.name.full }}
+                  <div class="d-flex align-items-center">
+                    <img [src]="user.picture.thumbnail" class="mr-2" alt="image">
+                    {{ user.name.full }}
+                  </div>
                 </td>
                 <td>
                   {{ user.gender | titlecase }}
@@ -85,7 +89,7 @@
               </li>
             </ul>
           </div>
-          <div class="dropdown ml-md-auto">
+          <div class="dropdown ml-md-auto mt-3 mt-sm-0">
             <div ngbDropdown>
               <button class="btn btn-gradient-primary" type="button" id="itemsPerPage" ngbDropdownToggle>
                 Per page: {{ pagination.itemsPerPage }}

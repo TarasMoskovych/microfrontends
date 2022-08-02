@@ -1,6 +1,7 @@
 import { DOCUMENT } from '@angular/common';
 import { ChangeDetectionStrategy, Component, EventEmitter, Inject, Input, Output, Renderer2 } from '@angular/core';
 import { NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap';
+import { SidebarService } from 'src/app/core/services/sidebar.service';
 import { IUser } from 'src/app/core/services/user.service';
 
 @Component({
@@ -19,6 +20,7 @@ export class NavbarComponent {
 
   constructor(
     private readonly renderer: Renderer2,
+    private readonly sidebarService: SidebarService,
     @Inject(DOCUMENT) private document: Document,
     config: NgbDropdownConfig,
   ) {
@@ -26,7 +28,7 @@ export class NavbarComponent {
   }
 
   toggleOffcanvas(): void {
-    this.document.querySelector('.sidebar-offcanvas')?.classList.toggle('active');
+    this.sidebarService.toggleSidebar();
   }
 
   toggleSidebar() {

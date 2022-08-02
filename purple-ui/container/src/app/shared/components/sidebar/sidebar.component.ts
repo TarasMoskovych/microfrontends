@@ -1,5 +1,6 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, HostListener, Input } from '@angular/core';
 import { Router, Routes } from '@angular/router';
+import { SidebarService } from 'src/app/core/services/sidebar.service';
 import { IUser } from 'src/app/core/services/user.service';
 import { getRemoteRoutes } from 'src/app/utils';
 
@@ -9,36 +10,31 @@ import { getRemoteRoutes } from 'src/app/utils';
   styleUrls: ['./sidebar.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SidebarComponent implements OnInit {
+export class SidebarComponent {
   @Input() user!: IUser;
+  @HostListener('document:click', ['$event', '$event.target'])
+  public onClick(event: MouseEvent, targetElement: HTMLElement): void {
+    if (!targetElement) {
+      return;
+    }
+    const clickedInside = this.elementRef.nativeElement.contains(targetElement);
 
-  public remoteRoutes: Routes = [];
+    if (!clickedInside && !('toggleSidebar' in targetElement.dataset)) {
+      this.sidebarService.closeSidebar();
+    }
+  }
+
+  public remoteRoutes: Routes = getRemoteRoutes();
   public remotesCollapsed = false;
 
   get frameworksActive(): boolean {
     return this.router.url.includes('frameworks');
   }
 
-  constructor(private readonly router: Router) {
+  constructor(
+    private readonly elementRef: ElementRef,
+    private readonly router: Router,
+    public readonly sidebarService: SidebarService,
+  ) {
   }
-
-  ngOnInit() {
-    const body = document.querySelector('body') as HTMLElement;
-    this.remoteRoutes = getRemoteRoutes();
-
-    // add class 'hover-open' to sidebar navitem while hover in sidebar-icon-only menu
-    document.querySelectorAll('.sidebar .nav-item').forEach(function (el) {
-      el.addEventListener('mouseover', function() {
-        if(body.classList.contains('sidebar-icon-only')) {
-          el.classList.add('hover-open');
-        }
-      });
-      el.addEventListener('mouseout', function() {
-        if(body.classList.contains('sidebar-icon-only')) {
-          el.classList.remove('hover-open');
-        }
-      });
-    });
-  }
-
 }

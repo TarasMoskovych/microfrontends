@@ -12,6 +12,7 @@ import {
 
 import {
   ContentAnimateDirective,
+  SidebarNavToggleDirective,
 } from './directives';
 
 @NgModule({
@@ -21,6 +22,7 @@ import {
     SidebarComponent,
     SpinnerComponent,
     ContentAnimateDirective,
+    SidebarNavToggleDirective,
   ],
   imports: [
     CommonModule,
@@ -33,6 +35,7 @@ import {
     SidebarComponent,
     SpinnerComponent,
     ContentAnimateDirective,
+    SidebarNavToggleDirective,
   ],
 })
 export class SharedModule { }

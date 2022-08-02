@@ -1,4 +1,9 @@
-<nav class="sidebar sidebar-offcanvas" id="sidebar">
+<nav
+  *ngIf="{ sidebarOpened: sidebarService.sidebarOpened$ | async } as data"
+  class="sidebar sidebar-offcanvas"
+  [class.active]="data.sidebarOpened"
+  id="sidebar"
+>
   <ul class="nav">
     <li class="nav-item nav-profile">
       <a href="javascript:;" class="nav-link">
@@ -13,19 +18,19 @@
         <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
       </a>
     </li>
-    <li class="nav-item" [ngClass]="{ 'active': dashboard.isActive }">
+    <li appSidebarNavToggle class="nav-item" [ngClass]="{ 'active': dashboard.isActive }">
       <a class="nav-link" routerLink="/dashboard" routerLinkActive #dashboard="routerLinkActive">
         <span class="menu-title">Dashboard</span>
         <i class="mdi mdi-home menu-icon"></i>
       </a>
     </li>
-    <li class="nav-item" [ngClass]="{ 'active': users.isActive }">
+    <li appSidebarNavToggle class="nav-item" [ngClass]="{ 'active': users.isActive }">
       <a class="nav-link" routerLink="/users" routerLinkActive #users="routerLinkActive">
         <span class="menu-title">Users</span>
         <i class="mdi mdi-account-multiple menu-icon"></i>
       </a>
     </li>
-    <li *ngIf="remoteRoutes.length" class="nav-item" [ngClass]="{'active': frameworksActive }">
+    <li *ngIf="remoteRoutes.length" appSidebarNavToggle class="nav-item" [ngClass]="{'active': frameworksActive }">
       <a class="nav-link" (click)="remotesCollapsed = !remotesCollapsed" [attr.aria-expanded]="remotesCollapsed" aria-controls="ui-basic">
         <span class="menu-title">Frameworks</span>
         <i class="menu-arrow"></i>
